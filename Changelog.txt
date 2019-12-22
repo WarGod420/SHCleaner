@@ -46,7 +46,6 @@ SHCleaner v1.0.3:
 - Added Windows update logs to the windows cleanup for windows updates.
 
 SHCleaner v1.0.2:
-- Added support for Opera in browser cleaning
 - Added Auslogics and Discord to application cleaning
 - Added folder verification to make sure the folder exists before executing any commands
 
