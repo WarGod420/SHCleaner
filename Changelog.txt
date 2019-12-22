@@ -1,3 +1,7 @@
+SHCleaner v1.1.5:
+- Fixed Browser Cleaner deleting saved passwords for Brave and Chrome
+- Added Reflector 3 and Steam to application cleaner
+
 SHCleaner v1.1.4:
 - Added Driver Easy and FL Studio 20 to application cleaner
 - Changed how Internet Explorer is cleaned in browser cleaner

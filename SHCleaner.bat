@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.4 By SarahH12099
+title SHCleaner v1.1.5 By SarahH12099
 
 MODE 107,25
 
@@ -16,7 +16,7 @@ if %errorLevel% == 2 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.4
+echo SHCleaner v1.1.5
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -63,7 +63,8 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /f "LOG">nul 2>&1
+del /q /f "LOG-journal">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -176,7 +177,8 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /f "LOG">nul 2>&1
+del /q /f "LOG-journal">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -421,7 +423,8 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /f "LOG">nul 2>&1
+del /q /f "LOG-journal">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -526,6 +529,20 @@ del /q /f "%appdata%\ProcessLasso\logs\*.log">nul 2>&1
 if exist "%localappdata%\qBittorrent\logs" (
 taskkill /F /IM "qbittorrent.exe">nul 2>&1
 del /q /f "%localappdata%\qBittorrent\logs\*.log">nul 2>&1
+)>nul 2>&1
+
+:: Reflector 3
+if exist "%localappdata%\Reflector 3" (
+taskkill /F /IM "Reflector3.exe">nul 2>&1
+del /q /s /f "%localappdata%\Reflector 3\*.*">nul 2>&1
+FOR /D %%p IN ("%localappdata%\Reflector 3\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
+
+:: Steam
+if exist "%localappdata%\Steam\htmlcache" (
+taskkill /F /IM "Steam.exe">nul 2>&1
+del /q /s /f "%localappdata%\Steam\htmlcache\*.*">nul 2>&1
+FOR /D %%p IN ("%localappdata%\Steam\htmlcache\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
 echo.
