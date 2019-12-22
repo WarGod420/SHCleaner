@@ -1,5 +1,5 @@
 # SHCleaner
-A bat file pc cleaner for Windows 10
+A bat file PC Cleaner for Windows 10
 <br><br>
 Latest Version: 1.1.2
 <br><br>
