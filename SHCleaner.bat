@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.2 By SarahH12099
+title SHCleaner v1.1.3 By SarahH12099
 
 MODE 107,25
 
@@ -16,7 +16,7 @@ if %errorLevel% == 2 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.2
+echo SHCleaner v1.1.3
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -367,12 +367,6 @@ if exist "%systemdrive%\Users\%username%\.bash_history" (
 del /q /f "%systemdrive%\Users\%username%\.bash_history">nul 2>&1
 )>nul 2>&1
 
-:: Local Temp
-if exist "%temp%" (
-del /q /s /f "%temp%\*.*">nul 2>&1
-FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q>nul 2>&1
-)>nul 2>&1
-
 :: Minecraft
 if exist "%appdata%\.minecraft\logs" (
 taskkill /F /IM "MinecraftLauncher.exe">nul 2>&1
@@ -503,6 +497,12 @@ cd \>nul 2>&1
 )>nul 2>&1
 )>nul 2>&1
 
+:: Process Lasso
+if exist "%appdata%\ProcessLasso\logs" (
+taskkill /F /IM "ProcessLasso.exe">nul 2>&1
+del /q /f "%appdata%\ProcessLasso\logs\*.log">nul 2>&1
+)>nul 2>&1
+
 :: qBittorrent
 if exist "%localappdata%\qBittorrent\logs" (
 taskkill /F /IM "qbittorrent.exe">nul 2>&1
@@ -523,6 +523,12 @@ echo Windows Cleanup
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Doing Windows Cleanup
+
+:: Local Temp
+if exist "%temp%" (
+del /q /s /f "%temp%\*.*">nul 2>&1
+FOR /D %%p IN ("%temp%\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
 
 :: Recycle Bin
 if exist "C:\$Recycle.Bin" (
