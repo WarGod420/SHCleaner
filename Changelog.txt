@@ -1,0 +1,50 @@
+SHCleaner v1.1.2:
+- Official first public release
+
+SHCleaner v1.1.1:
+- Formatted the size of the bat file output window
+
+SHCleaner v1.1.0:
+- Added Extension Rules cleaning to internet cleaner
+- Added Epic Games and Minecraft to application cleaning
+- Changed Discord cleaning for closing Discord
+
+SHCleaner v1.0.9:
+- Removed saved passwords from browser cleaning
+- Improved Browser Cleaning
+
+SHCleaner v1.0.8:
+- Greatly improved Browser Cleaning
+
+SHCleaner v1.0.7:
+- Added FileZilla to application cleaner
+- Added Windows Recents to windows cleaner
+- Improved Browser Cleaning
+
+SHCleaner v1.0.6:
+- Added Auslogics Registry Defrag to application cleaner
+
+SHCleaner v1.0.5:
+- Added Thumbnail cache to windows cleanup
+- Fixed a possible directory error with the multiple file cleanup code
+
+SHCleaner v1.0.4:
+- Added Adobe Photoshop 2020 and Adobe Audition 2020 to application cleaner
+- Added Auslogics Driver Updater and Auslogics Windows Slimmer to application cleaner
+
+SHCleaner v1.0.3:
+- Changed how browsers are closed and location is set.
+- Application cleaning now closes the application before cleaning incase the application is open.
+- Added Windows update logs to the windows cleanup for windows updates.
+
+SHCleaner v1.0.2:
+- Added support for Opera in browser cleaning
+- Added Auslogics and Discord to application cleaning
+- Added folder verification to make sure the folder exists before executing any commands
+
+SHCleaner v1.0.1:
+- Massively improved Browser cleaning, can now clean download history and code cache in Browsers too
+- Added support for application cleaning (currently cleans eM Client, Git, PDFelement 7, Popcorn-Time, qBitttorent)
+
+SHCleaner v1.0.0: 
+- Official first release (Private)
