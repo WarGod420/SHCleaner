@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.5 By SarahH12099
+title SHCleaner v1.1.6 By SarahH12099
 
 MODE 107,25
 
@@ -16,7 +16,7 @@ if %errorLevel% == 2 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.5
+echo SHCleaner v1.1.6
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -336,6 +336,7 @@ del /q /f "%programdata%\Auslogics\Windows Slimmer\2.x\Reports\*.html">nul 2>&1
 :: Discord
 if exist "%appdata%\Discord" (
 taskkill /F /IM "Discord.exe">nul 2>&1
+del /q /f "%appdata%\Discord\modules.log">nul 2>&1
 )>nul 2>&1
 if exist "%appdata%\Discord\Cache" (
 rmdir "%appdata%\Discord\Cache" /s /q>nul 2>&1
@@ -381,6 +382,11 @@ taskkill /F /IM "FL64.exe">nul 2>&1
 taskkill /F /IM "FL64 (scaled).exe">nul 2>&1
 del /q /s /f "%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Support\Logs\*.*">nul 2>&1
 FOR /D %%p IN ("%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Support\Logs\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
+
+:: Intel
+if exist "%programdata%\Intel\Logs" (
+del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
 :: Git
@@ -580,6 +586,11 @@ rd /q /s E:\$Recycle.Bin>nul 2>&1
 :: Windows Event Logs
 if exist "%windir%\System32\winevt\Logs" (
 del /q /f "%windir%\System32\winevt\Logs\*.evtx">nul 2>&1
+)>nul 2>&1
+
+:: Windows Health
+if exist "%programdata%\Microsoft\Windows Security Health\Logs" (
+del /q /f "%programdata%\Microsoft\Windows Security Health\Logs\*.etl">nul 2>&1
 )>nul 2>&1
 
 :: Windows Temp
