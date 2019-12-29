@@ -1,3 +1,7 @@
+SHCleaner v1.1.7:
+- Massively improved Brave and Chrome cleaning in the internet cleaner
+- Improved Popcorn-Time Cleaning in application cleaner
+
 SHCleaner v1.1.6:
 - Added Windows Health to Windows Cleaner
 - Added Intel to application cleaner

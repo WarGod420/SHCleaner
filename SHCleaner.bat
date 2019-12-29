@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.6 By SarahH12099
+title SHCleaner v1.1.7 By SarahH12099
 
 MODE 107,25
 
@@ -16,7 +16,7 @@ if %errorLevel% == 2 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.6
+echo SHCleaner v1.1.7
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -63,8 +63,7 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG">nul 2>&1
-del /q /f "LOG-journal">nul 2>&1
+del /q /f "LOG.*">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -90,6 +89,12 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "data_reduction_proxy_leveldb" (
+cd "data_reduction_proxy_leveldb">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Extension Rules" (
 cd "Extension Rules">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
@@ -100,10 +105,27 @@ cd "Extension State">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "Feature Engagement Tracker" (
+cd "Feature Engagement Tracker">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "File System\Origins" (
 cd "File System\Origins">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "GCM Store" (
+cd "GCM Store">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "IndexedDB" (
+cd "IndexedDB">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
@@ -117,7 +139,8 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Service Worker\Database" (
@@ -142,17 +165,20 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Site Characteristics Database" (
 cd "Site Characteristics Database">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "Sync Data\LevelDB" (
-cd "Sync Data\LevelDB">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "Sync Data" (
+cd "Sync Data">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "VideoDecodeStats" (
 cd "VideoDecodeStats">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
@@ -177,8 +203,7 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG">nul 2>&1
-del /q /f "LOG-journal">nul 2>&1
+del /q /f "LOG.*">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -204,6 +229,12 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "data_reduction_proxy_leveldb" (
+cd "data_reduction_proxy_leveldb">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Extension Rules" (
 cd "Extension Rules">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
@@ -214,10 +245,27 @@ cd "Extension State">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "Feature Engagement Tracker" (
+cd "Feature Engagement Tracker">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "File System\Origins" (
 cd "File System\Origins">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "GCM Store" (
+cd "GCM Store">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "IndexedDB" (
+cd "IndexedDB">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
@@ -231,7 +279,8 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Service Worker\Database" (
@@ -256,17 +305,20 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Site Characteristics Database" (
 cd "Site Characteristics Database">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "Sync Data\LevelDB" (
-cd "Sync Data\LevelDB">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "Sync Data" (
+cd "Sync Data">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "VideoDecodeStats" (
 cd "VideoDecodeStats">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
@@ -429,8 +481,7 @@ del /q /f "History*.*">nul 2>&1
 del /q /f "Last Session*.*">nul 2>&1
 del /q /f "Last Tabs*.*">nul 2>&1
 del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG">nul 2>&1
-del /q /f "LOG-journal">nul 2>&1
+del /q /f "LOG.*">nul 2>&1
 del /q /f "MANIFEST*.*">nul 2>&1
 del /q /f "Network Action*.*">nul 2>&1
 del /q /f "Network Persistent State*.*">nul 2>&1
@@ -456,6 +507,12 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "data_reduction_proxy_leveldb" (
+cd "data_reduction_proxy_leveldb">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Extension Rules" (
 cd "Extension Rules">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
@@ -466,10 +523,27 @@ cd "Extension State">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "Feature Engagement Tracker" (
+cd "Feature Engagement Tracker">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "File System\Origins" (
 cd "File System\Origins">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "GCM Store" (
+cd "GCM Store">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "IndexedDB" (
+cd "IndexedDB">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
@@ -483,7 +557,8 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Service Worker\Database" (
@@ -508,17 +583,20 @@ cd ../../>nul 2>&1
 )>nul 2>&1
 if exist "Site Characteristics Database" (
 cd "Site Characteristics Database">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "Sync Data\LevelDB" (
-cd "Sync Data\LevelDB">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "Sync Data" (
+cd "Sync Data">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "VideoDecodeStats" (
 cd "VideoDecodeStats">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
