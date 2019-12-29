@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.9 By SarahH12099
+title SHCleaner v1.2.0 By SarahH12099
 
 MODE 107,25
 
@@ -28,7 +28,7 @@ if not errorlevel 1 (
     echo.
     cd "%temp%"
     del /f /q sqlite3.zip>nul 2>&1
-    powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/SarahH12099/SHCleaner/master/sqlite3.zip', 'sqlite3.zip')"
+    powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/sqlite3.zip', 'sqlite3.zip')"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
     del /f /q sqlite3.zip>nul 2>&1
     cd \
@@ -48,7 +48,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.9
+echo SHCleaner v1.2.0
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
