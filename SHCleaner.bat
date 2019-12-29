@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.1.8 By SarahH12099
+title SHCleaner v1.1.9 By SarahH12099
 
 MODE 107,25
 
@@ -48,14 +48,14 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.8
+echo SHCleaner v1.1.9
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Select A Tool
 echo =============
 echo.
-echo [1] Delete Internet History/Cache/Cookies (Brave, Google Chrome, Internet Explorer)
+echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Firefox, Internet Explorer)
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Clear Clipboard
@@ -72,7 +72,7 @@ goto error
 :1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo Delete Internet History/Cache/Cookies (Brave, Google Chrome, Internet Explorer)
+echo Delete Internet History/Cache/Cookies (Brave, Chrome, Firefox, Internet Explorer)
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Cleaning Internet History/Cache/Cookies
@@ -357,6 +357,19 @@ cd \>nul 2>&1
 )>nul 2>&1
 )>nul 2>&1
 
+:: Firefox
+set FirefoxLocation="%appdata%\Mozilla\Firefox\Profiles"
+if exist "%FirefoxLocation%" (
+taskkill /F /IM "firefox.exe">nul 2>&1
+for /d %%i in (%FirefoxLocation%\*) do (
+cd "%%i">nul 2>&1
+if exist "places.sqlite" (
+sqlite3 places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
+)>nul 2>&1
+cd \>nul 2>&1
+)>nul 2>&1
+)>nul 2>&1
+
 :: Internet Explorer
 taskkill /F /IM "iexplore.exe">nul 2>&1
 RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 1
@@ -415,6 +428,16 @@ taskkill /F /IM "Integrator.exe">nul 2>&1
 taskkill /F /IM "WindowsSlimmer.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Windows Slimmer\2.x\Reports\*.xml">nul 2>&1
 del /q /f "%programdata%\Auslogics\Windows Slimmer\2.x\Reports\*.html">nul 2>&1
+)>nul 2>&1
+
+:: Cygwin
+if exist "%systemdrive%\cygwin\home" (1
+del /q /s /f ".bash_history">nul 2>&1
+)>nul 2>&1
+
+:: Cygwin64
+if exist "%systemdrive%\cygwin64\home" (1
+del /q /s /f ".bash_history">nul 2>&1
 )>nul 2>&1
 
 :: Discord
