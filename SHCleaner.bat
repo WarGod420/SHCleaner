@@ -1,22 +1,54 @@
 @echo off
-title SHCleaner v1.1.7 By SarahH12099
+title SHCleaner v1.1.8 By SarahH12099
 
 MODE 107,25
 
 net session >nul 2>&1
 if %errorLevel% == 2 (
-	echo.
-	echo Failure: Permission Denied, Please Run As Administrator
-	echo.
-	pause
-	goto exit
+    echo.
+    echo Failure: Permission Denied, Please Run As Administrator
+    echo.
+    pause
+    goto exit
+)
+
+WHERE sqlite3>nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+echo -----------------------------------------------------------------------------------------------------------
+echo SQLite3 Dependency Not Found
+echo -----------------------------------------------------------------------------------------------------------
+echo.
+echo Checking Internet Connection
+echo.
+ping -n 2 www.google.com | find "Reply" > nul
+if not errorlevel 1 (
+    echo Connected to the Internet
+    echo.
+    echo Downloading And Installing Dependencies
+    echo.
+    cd "%temp%"
+    del /f /q sqlite3.zip>nul 2>&1
+    powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/SarahH12099/SHCleaner/master/sqlite3.zip', 'sqlite3.zip')"
+    powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
+    del /f /q sqlite3.zip>nul 2>&1
+    cd \
+    echo Done Downloading And Installing Dependencies
+    echo.
+    pause
+    goto menu
+) else (
+    echo Not Connected to the Internet, Please Connect to the Internet and Try Again
+    echo.
+    pause
+    goto exit
+) 
 )
 
 :menu
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.1.7
+echo SHCleaner v1.1.8
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.

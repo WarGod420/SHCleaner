@@ -1,3 +1,8 @@
+SHCleaner v1.1.8:
+- Added Dependency Installer
+- Added the dependency of SQLite3 which is required for future versions of SHCleaner
+- Added internet connection check for the Dependency installer
+
 SHCleaner v1.1.7:
 - Massively improved Brave and Chrome cleaning in the internet cleaner
 - Improved Popcorn-Time Cleaning in application cleaner
