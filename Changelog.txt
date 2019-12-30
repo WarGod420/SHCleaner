@@ -1,3 +1,6 @@
+SHCleaner v1.2.1:
+- Added a Check for Updates option in the menu to check for SHCleaner updates
+
 SHCleaner v1.2.0:
 - Changed the download link for the dependencies in the Dependency Installer
 

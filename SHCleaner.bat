@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.0 By SarahH12099
+title SHCleaner v1.2.1 By SarahH12099
 
 MODE 107,25
 
@@ -27,10 +27,10 @@ if not errorlevel 1 (
     echo Downloading And Installing Dependencies
     echo.
     cd "%temp%"
-    del /f /q sqlite3.zip>nul 2>&1
+    del /f /q "sqlite3.zip">nul 2>&1
     powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/sqlite3.zip', 'sqlite3.zip')"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
-    del /f /q sqlite3.zip>nul 2>&1
+    del /f /q "sqlite3.zip">nul 2>&1
     cd \
     echo Done Downloading And Installing Dependencies
     echo.
@@ -48,7 +48,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.0
+echo SHCleaner v1.2.1
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -59,14 +59,16 @@ echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Firefox, Internet
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Clear Clipboard
-echo [5] Exit
+echo [5] Check For Updates
+echo [6] Exit
 echo.
 set /p op=Run:
 if %op%==1 goto 1
 if %op%==2 goto 2
 if %op%==3 goto 3
 if %op%==4 goto 4
-if %op%==5 goto exit
+if %op%==5 goto 5
+if %op%==6 goto exit
 goto error
 
 :1
@@ -773,6 +775,43 @@ echo off | clip>nul 2>&1
 
 echo.
 echo Done Clearing Clipboard
+:: Go Back To Menu
+echo.
+pause
+goto menu
+
+:5
+cls
+echo -----------------------------------------------------------------------------------------------------------
+echo Check For Updates
+echo -----------------------------------------------------------------------------------------------------------
+echo.
+echo Checking For Updates
+echo.
+
+:: Update Checker
+set Version=1.2.1
+cd %temp%>nul 2>&1
+if exist "version.txt" (
+del /f /q "version.txt">nul 2>&1
+)>nul 2>&1
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/version.txt', 'version.txt')"
+set /p Build=<version.txt
+if exist "version.txt" (
+del /f /q "version.txt">nul 2>&1
+)>nul 2>&1
+if %Build% == %Version% (
+    echo SHCleaner is Up to Date.
+) else (
+    echo SHCleaner is Outdated
+    echo.
+    echo Opening update page
+    start "" https://github.com/SarahH12099/SHCleaner
+)
+cd \>nul 2>&1
+
+echo.
+echo Done Checking For Updates
 :: Go Back To Menu
 echo.
 pause
