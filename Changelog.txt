@@ -1,3 +1,6 @@
+SHCleaner v1.2.5:
+- Added Net Security Protocol to Invoke-WebRequest for Powershell Downloading
+
 SHCleaner v1.2.4:
 - Fixed a typo in the internet connection checker for the Update Checker
 

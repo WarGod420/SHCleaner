@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.4 By SarahH12099
+title SHCleaner v1.2.5 By SarahH12099
 
 MODE 107,25
 
@@ -30,7 +30,7 @@ if not errorlevel 1 (
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
-    powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
+    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.4
+echo SHCleaner v1.2.5
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -808,7 +808,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.2.4
+set Version=1.2.5
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
@@ -818,8 +818,8 @@ if exist "version.txt" (
 del /f /q "version.txt">nul 2>&1
 )>nul 2>&1
 
-powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3md5.txt -OutFile sqlite3md5.txt"
-powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/version.txt -OutFile version.txt"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3md5.txt -OutFile sqlite3md5.txt"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/version.txt -OutFile version.txt"
 
 set /p Build=<sqlite3md5.txt
 set /p Check=<version.txt
@@ -852,7 +852,7 @@ if %Build% == %MD5% (
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
-    powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
+    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
