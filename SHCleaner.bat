@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.2 By SarahH12099
+title SHCleaner v1.2.3 By SarahH12099
 
 MODE 107,25
 
@@ -30,7 +30,7 @@ if not errorlevel 1 (
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
-    powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/sqlite3.zip', 'sqlite3.zip')"
+    powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.2
+echo SHCleaner v1.2.3
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -666,7 +666,6 @@ cd \>nul 2>&1
 
 :: Process Lasso
 if exist "%appdata%\ProcessLasso\logs" (
-taskkill /F /IM "ProcessLasso.exe">nul 2>&1
 del /q /f "%appdata%\ProcessLasso\logs\*.log">nul 2>&1
 )>nul 2>&1
 
@@ -795,13 +794,22 @@ echo.
 
 :: Update Checker
 
+ping -n 2 www.google.com | find "Reply" > nul
+if errorlevel 1 (
+    echo Not Connected to the Internet, Please Connect to the Internet and Try Again
+    echo.
+    pause
+    goto menu
+) 
+)
+
 Set "MD5="
 For /f "skip=1 Delims=" %%# in (
   'certutil -hashfile "%windir%\sqlite3.exe" MD5'
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.2.2
+set Version=1.2.3
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
@@ -811,8 +819,8 @@ if exist "version.txt" (
 del /f /q "version.txt">nul 2>&1
 )>nul 2>&1
 
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/sqlite3md5.txt', 'sqlite3md5.txt')"
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/version.txt', 'version.txt')"
+powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3md5.txt -OutFile sqlite3md5.txt"
+powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/version.txt -OutFile version.txt"
 
 set /p Build=<sqlite3md5.txt
 set /p Check=<version.txt
@@ -825,7 +833,7 @@ del /f /q "version.txt">nul 2>&1
 )>nul 2>&1
 
 if %Check% == %Version% (
-    echo SHCleaner is Up to Date.
+    echo SHCleaner is Up to Date
     echo.
 ) else (
     echo SHCleaner is Outdated
@@ -845,7 +853,7 @@ if %Build% == %MD5% (
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
-    powershell -Command "(New-Object Net.WebClient).DownloadFile('https://sarahh12099.github.io/files/sqlite3.zip', 'sqlite3.zip')"
+    powershell -Command "Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
     powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
     if exist "sqlite3.zip" (
     del /f /q "sqlite3.zip">nul 2>&1
