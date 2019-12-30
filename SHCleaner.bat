@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.5 By SarahH12099
+title SHCleaner v1.2.6 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.5
+echo SHCleaner v1.2.6
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -369,6 +369,9 @@ if exist "%FirefoxLocation%" (
 taskkill /F /IM "firefox.exe">nul 2>&1
 for /d %%i in (%FirefoxLocation%\*) do (
 cd "%%i">nul 2>&1
+if exist "cookies.sqlite" (
+del /q /f "cookies.sqlite">nul 2>&1
+)>nul 2>&1
 if exist "places.sqlite" (
 sqlite3 places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
 )>nul 2>&1
@@ -808,7 +811,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.2.5
+set Version=1.2.6
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
