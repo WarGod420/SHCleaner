@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.7 By SarahH12099
+title SHCleaner v1.2.8 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.7
+echo SHCleaner v1.2.8
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -88,17 +88,30 @@ set BraveLocation="%localappdata%\BraveSoftware\Brave-Browser\User Data"
 if exist "%BraveLocation%" (
 taskkill /F /IM "brave.exe">nul 2>&1
 cd "%BraveLocation%">nul 2>&1
+del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "BrowserMetrics" (
+cd "BrowserMetrics">nul 2>&1
+del /q /f "*.pma">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Crashpad" (
 cd "Crashpad">nul 2>&1
 del /q /f "metadata">nul 2>&1
 cd ../>nul 2>&1
+)>nul 2>&1
+if exist "ShaderCache\GPUCache" (
+cd "ShaderCache\GPUCache">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
 for /d %%i in (%BraveLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
+del /q /f "Bookmarks.bak">nul 2>&1
 del /q /f "Cookies*.*">nul 2>&1
 del /q /f "CURRENT*.*">nul 2>&1
 del /q /f "Current Session*.*">nul 2>&1
@@ -173,6 +186,16 @@ cd "IndexedDB">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "JumpListIconsMostVisited" (
+cd "JumpListIconsMostVisited">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "JumpListIconsRecentClosed" (
+cd "JumpListIconsRecentClosed">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
@@ -182,6 +205,11 @@ if exist "Local Storage\leveldb" (
 cd "Local Storage\leveldb">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "Managed Extension Settings" (
+cd "Managed Extension Settings">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
@@ -236,17 +264,30 @@ set ChromeLocation="%localappdata%\Google\Chrome\User Data"
 if exist "%ChromeLocation%" (
 taskkill /F /IM "chrome.exe">nul 2>&1
 cd "%ChromeLocation%">nul 2>&1
+del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "BrowserMetrics" (
+cd "BrowserMetrics">nul 2>&1
+del /q /f "*.pma">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Crashpad" (
 cd "Crashpad">nul 2>&1
 del /q /f "metadata">nul 2>&1
 cd ../>nul 2>&1
+)>nul 2>&1
+if exist "ShaderCache\GPUCache" (
+cd "ShaderCache\GPUCache">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
 for /d %%i in (%ChromeLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
+del /q /f "Bookmarks.bak">nul 2>&1
 del /q /f "Cookies*.*">nul 2>&1
 del /q /f "CURRENT*.*">nul 2>&1
 del /q /f "Current Session*.*">nul 2>&1
@@ -321,6 +362,16 @@ cd "IndexedDB">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "JumpListIconsMostVisited" (
+cd "JumpListIconsMostVisited">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "JumpListIconsRecentClosed" (
+cd "JumpListIconsRecentClosed">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
@@ -330,6 +381,11 @@ if exist "Local Storage\leveldb" (
 cd "Local Storage\leveldb">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "Managed Extension Settings" (
+cd "Managed Extension Settings">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
@@ -548,17 +604,30 @@ set PopcornTimeLocation="%localappdata%\Popcorn-Time\User Data"
 if exist "%PopcornTimeLocation%" (
 taskkill /F /IM "Popcorn-Time.exe">nul 2>&1
 cd "%PopcornTimeLocation%">nul 2>&1
+del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "BrowserMetrics" (
+cd "BrowserMetrics">nul 2>&1
+del /q /f "*.pma">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Crashpad" (
 cd "Crashpad">nul 2>&1
 del /q /f "metadata">nul 2>&1
 cd ../>nul 2>&1
+)>nul 2>&1
+if exist "ShaderCache\GPUCache" (
+cd "ShaderCache\GPUCache">nul 2>&1
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../../>nul 2>&1
 )>nul 2>&1
 cd \>nul 2>&1
 for /d %%i in (%PopcornTimeLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
+del /q /f "Bookmarks.bak">nul 2>&1
 del /q /f "Cookies*.*">nul 2>&1
 del /q /f "CURRENT*.*">nul 2>&1
 del /q /f "Current Session*.*">nul 2>&1
@@ -633,6 +702,16 @@ cd "IndexedDB">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
+if exist "JumpListIconsMostVisited" (
+cd "JumpListIconsMostVisited">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+if exist "JumpListIconsRecentClosed" (
+cd "JumpListIconsRecentClosed">nul 2>&1
+del /q /s /f "*.tmp">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
 if exist "Local Extension Settings" (
 cd "Local Extension Settings">nul 2>&1
 del /q /s /f "LOG*.*">nul 2>&1
@@ -642,6 +721,11 @@ if exist "Local Storage\leveldb" (
 cd "Local Storage\leveldb">nul 2>&1
 del /q /f "LOG*.*">nul 2>&1
 cd ../../>nul 2>&1
+)>nul 2>&1
+if exist "Managed Extension Settings" (
+cd "Managed Extension Settings">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "Platform Notifications" (
 cd "Platform Notifications">nul 2>&1
@@ -835,7 +919,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.2.7
+set Version=1.2.8
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
