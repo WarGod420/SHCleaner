@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.2.6 By SarahH12099
+title SHCleaner v1.2.7 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.2.6
+echo SHCleaner v1.2.7
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -87,6 +87,14 @@ echo Cleaning Internet History/Cache/Cookies
 set BraveLocation="%localappdata%\BraveSoftware\Brave-Browser\User Data"
 if exist "%BraveLocation%" (
 taskkill /F /IM "brave.exe">nul 2>&1
+cd "%BraveLocation%">nul 2>&1
+del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "Crashpad" (
+cd "Crashpad">nul 2>&1
+del /q /f "metadata">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+cd \>nul 2>&1
 for /d %%i in (%BraveLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
@@ -149,10 +157,10 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "File System\Origins" (
-cd "File System\Origins">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "File System" (
+cd "File System">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "GCM Store" (
 cd "GCM Store">nul 2>&1
@@ -227,6 +235,14 @@ cd \>nul 2>&1
 set ChromeLocation="%localappdata%\Google\Chrome\User Data"
 if exist "%ChromeLocation%" (
 taskkill /F /IM "chrome.exe">nul 2>&1
+cd "%ChromeLocation%">nul 2>&1
+del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "Crashpad" (
+cd "Crashpad">nul 2>&1
+del /q /f "metadata">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+cd \>nul 2>&1
 for /d %%i in (%ChromeLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
@@ -289,10 +305,10 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "File System\Origins" (
-cd "File System\Origins">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "File System" (
+cd "File System">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "GCM Store" (
 cd "GCM Store">nul 2>&1
@@ -531,6 +547,14 @@ del /q /f "%appdata%\Wondershare\PDFelement 7\Log\*.log">nul 2>&1
 set PopcornTimeLocation="%localappdata%\Popcorn-Time\User Data"
 if exist "%PopcornTimeLocation%" (
 taskkill /F /IM "Popcorn-Time.exe">nul 2>&1
+cd "%PopcornTimeLocation%">nul 2>&1
+del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "Crashpad" (
+cd "Crashpad">nul 2>&1
+del /q /f "metadata">nul 2>&1
+cd ../>nul 2>&1
+)>nul 2>&1
+cd \>nul 2>&1
 for /d %%i in (%PopcornTimeLocation%\*) do (
 cd "%%i">nul 2>&1
 del /q /f "*.ldb">nul 2>&1
@@ -593,10 +617,10 @@ del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../>nul 2>&1
 )>nul 2>&1
-if exist "File System\Origins" (
-cd "File System\Origins">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+if exist "File System" (
+cd "File System">nul 2>&1
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../>nul 2>&1
 )>nul 2>&1
 if exist "GCM Store" (
 cd "GCM Store">nul 2>&1
@@ -811,7 +835,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.2.6
+set Version=1.2.7
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (

@@ -1,3 +1,7 @@
+SHCleaner v1.2.7:
+- Improved Brave and Chrome cleaning in the internet cleaner
+- Improved Popcorn-Time Cleaning in application cleaner
+
 SHCleaner v1.2.6:
 - Slightly improved Firefox cleaning in the Browser Cleaner
 
