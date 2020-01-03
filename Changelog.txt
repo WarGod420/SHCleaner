@@ -1,5 +1,5 @@
 SHCleaner v1.3.0:
-- Fixed a typo issue Revo Uninstaller Pro in the application cleaner
+- Fixed a typo issue with Revo Uninstaller Pro in the application cleaner
 
 SHCleaner v1.2.9:
 - Added Revo Uninstaller Pro to the application cleaner
