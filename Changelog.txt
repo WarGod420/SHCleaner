@@ -1,3 +1,6 @@
+SHCleaner v1.2.9:
+- Added Revo Uninstaller Pro to the application cleaner
+
 SHCleaner v1.2.8:
 - Improved Brave and Chrome cleaning in the internet cleaner
 - Improved Popcorn-Time Cleaning in application cleaner
