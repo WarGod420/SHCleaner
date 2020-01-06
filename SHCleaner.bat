@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.0 By SarahH12099
+title SHCleaner v1.3.1 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.0
+echo SHCleaner v1.3.1
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -483,6 +483,12 @@ taskkill /F /IM "photoshop.exe">nul 2>&1
 del /q /f "%appdata%\Adobe\Adobe Photoshop 2020\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
+:: AirParrot 2
+if exist "%localappdata%\AirParrot 2" (
+taskkill /F /IM "AirParrot2.exe">nul 2>&1
+del /q /f "%localappdata%\AirParrot 2\*.log">nul 2>&1
+)>nul 2>&1
+
 :: Auslogics
 if exist "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports" (
 taskkill /F /IM "DiskDefragPro.exe">nul 2>&1
@@ -789,8 +795,7 @@ del /q /f "%localappdata%\qBittorrent\logs\*.log">nul 2>&1
 :: Reflector 3
 if exist "%localappdata%\Reflector 3" (
 taskkill /F /IM "Reflector3.exe">nul 2>&1
-del /q /s /f "%localappdata%\Reflector 3\*.*">nul 2>&1
-FOR /D %%p IN ("%localappdata%\Reflector 3\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+del /q /f "%localappdata%\Reflector 3\*.log">nul 2>&1
 )>nul 2>&1
 
 :: Revo Uninstaller Pro
@@ -926,7 +931,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.0
+set Version=1.3.1
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
