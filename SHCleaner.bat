@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.1 By SarahH12099
+title SHCleaner v1.3.2 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.1
+echo SHCleaner v1.3.2
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -483,6 +483,12 @@ taskkill /F /IM "photoshop.exe">nul 2>&1
 del /q /f "%appdata%\Adobe\Adobe Photoshop 2020\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
+:: Affinity Photo
+if exist "%appdata%\Affinity\Photo\1.0\Log.txt" (
+taskkill /F /IM "Photo.exe">nul 2>&1
+del /q /f "%appdata%\Affinity\Photo\1.0\Log.txt">nul 2>&1
+)>nul 2>&1
+
 :: AirParrot 2
 if exist "%localappdata%\AirParrot 2" (
 taskkill /F /IM "AirParrot2.exe">nul 2>&1
@@ -812,6 +818,13 @@ del /q /s /f "%localappdata%\Steam\htmlcache\*.*">nul 2>&1
 FOR /D %%p IN ("%localappdata%\Steam\htmlcache\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
+:: VEGAS Pro 17.0
+if exist "%localappdata%\VEGAS Pro\17.0" (
+taskkill /F /IM "vegas170.exe">nul 2>&1
+del /q /s /f "%localappdata%\VEGAS Pro\17.0\*.*">nul 2>&1
+FOR /D %%p IN ("%localappdata%\VEGAS Pro\17.0\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
+
 echo.
 echo Done Application Cleanup
 :: Go Back To Menu
@@ -931,7 +944,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.1
+set Version=1.3.2
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (

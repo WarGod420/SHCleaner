@@ -1,3 +1,6 @@
+SHCleaner v1.3.2:
+- Added Affinity Photo and VEGAS Pro 17.0 to the application cleaner
+
 SHCleaner v1.3.1:
 - Added AirParrot 2 to the application cleaner
 - Changed Reflector 3 cleaning in the application cleaner
