@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.2 By SarahH12099
+title SHCleaner v1.3.3 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.2
+echo SHCleaner v1.3.3
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -584,6 +584,12 @@ del /q /s /f "%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Supp
 FOR /D %%p IN ("%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Support\Logs\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
+:: HitmanPro
+if exist "%programdata%\HitmanPro\Logs" (
+taskkill /F /IM "HitmanPro.exe">nul 2>&1
+del /q /f "%programdata%\HitmanPro\Logs\*.log">nul 2>&1
+)>nul 2>&1
+
 :: Intel
 if exist "%programdata%\Intel\Logs" (
 del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
@@ -944,7 +950,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.2
+set Version=1.3.3
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (

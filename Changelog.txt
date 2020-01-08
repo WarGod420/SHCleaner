@@ -1,3 +1,6 @@
+SHCleaner v1.3.3:
+- Added HitmanPro to the application cleaner
+
 SHCleaner v1.3.2:
 - Added Affinity Photo and VEGAS Pro 17.0 to the application cleaner
 
