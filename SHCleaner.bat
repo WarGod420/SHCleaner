@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.3 By SarahH12099
+title SHCleaner v1.3.4 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.3
+echo SHCleaner v1.3.4
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -473,11 +473,13 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Doing Application Cleanup
 
-:: Adobe 2020
+:: Adobe Audition 2020
 if exist "%appdata%\Adobe\Audition\13.0\logs" (
 taskkill /F /IM "Adobe Audition.exe">nul 2>&1
 del /q /f "%appdata%\Adobe\Audition\13.0\logs\*.txt">nul 2>&1
 )>nul 2>&1
+
+:: Adobe Photoshop 2020
 if exist "%appdata%\Adobe\Adobe Photoshop 2020\Logs" (
 taskkill /F /IM "photoshop.exe">nul 2>&1
 del /q /f "%appdata%\Adobe\Adobe Photoshop 2020\Logs\*.log">nul 2>&1
@@ -495,27 +497,35 @@ taskkill /F /IM "AirParrot2.exe">nul 2>&1
 del /q /f "%localappdata%\AirParrot 2\*.log">nul 2>&1
 )>nul 2>&1
 
-:: Auslogics
+:: Auslogics Disk Defrag Ultimate
 if exist "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports" (
 taskkill /F /IM "DiskDefragPro.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports\*.xml">nul 2>&1
 )>nul 2>&1
+
+:: Auslogics Driver Updater
 if exist "%programdata%\Auslogics\Driver Updater\1.x\Logs" (
 taskkill /F /IM "DriverUpdater.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Driver Updater\1.x\Logs\*.log">nul 2>&1
 )>nul 2>&1
+
+:: Auslogics Registry Cleaner
 if exist "%programdata%\Auslogics\Registry Cleaner\8.x\Reports" (
 taskkill /F /IM "Integrator.exe">nul 2>&1
 taskkill /F /IM "RegistryCleaner.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Registry Cleaner\8.x\Reports\*.xml">nul 2>&1
 del /q /f "%programdata%\Auslogics\Registry Cleaner\8.x\Reports\*.html">nul 2>&1
 )>nul 2>&1
+
+:: Auslogics Registry Defrag
 if exist "%programdata%\Auslogics\Registry Defrag\12.x\Reports" (
 taskkill /F /IM "Integrator.exe">nul 2>&1
 taskkill /F /IM "RegistryDefrag.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Registry Defrag\12.x\Reports\*.xml">nul 2>&1
 del /q /f "%programdata%\Auslogics\Registry Defrag\12.x\Reports\*.html">nul 2>&1
 )>nul 2>&1
+
+:: Auslogics Windows Slimmer
 if exist "%programdata%\Auslogics\Windows Slimmer\2.x\Reports" (
 taskkill /F /IM "Integrator.exe">nul 2>&1
 taskkill /F /IM "WindowsSlimmer.exe">nul 2>&1
@@ -598,6 +608,11 @@ del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
 :: Git
 if exist "%systemdrive%\Users\%username%\.bash_history" (
 del /q /f "%systemdrive%\Users\%username%\.bash_history">nul 2>&1
+)>nul 2>&1
+
+:: McAfee Endpoint Security
+if exist "%programdata%\McAfee\Endpoint Security\Logs" (
+del /q /f "%programdata%\McAfee\Endpoint Security\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
 :: Minecraft
@@ -950,7 +965,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.3
+set Version=1.3.4
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
