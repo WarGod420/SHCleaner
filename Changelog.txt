@@ -1,3 +1,6 @@
+SHCleaner v1.3.5:
+- Added SOUND FORGE Pro & Pro Suite 13.0 to the application cleaner
+
 SHCleaner v1.3.4:
 - Added McAfee Endpoint Security to the application cleaner
 - Separated all of the Adobe and Auslogics applications in the application cleaner

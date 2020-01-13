@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.4 By SarahH12099
+title SHCleaner v1.3.5 By SarahH12099
 
 MODE 107,25
 
@@ -52,7 +52,7 @@ if not errorlevel 1 (
 cd \>nul 2>&1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.4
+echo SHCleaner v1.3.5
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -832,6 +832,13 @@ del /q /s /f "%localappdata%\VS Revo Group\Revo Uninstaller Pro\Logs\*.*">nul 2>
 FOR /D %%p IN ("%localappdata%\VS Revo Group\Revo Uninstaller Pro\Logs\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
+:: SOUND FORGE Pro & Pro Suite 13.0
+if exist "%localappdata%\MAGIX\SOUND FORGE Pro\13.0" (
+taskkill /F /IM "Forge130.exe">nul 2>&1
+del /q /s /f "%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.*">nul 2>&1
+FOR /D %%p IN ("%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
+
 :: Steam
 if exist "%localappdata%\Steam\htmlcache" (
 taskkill /F /IM "Steam.exe">nul 2>&1
@@ -965,7 +972,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.4
+set Version=1.3.5
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
