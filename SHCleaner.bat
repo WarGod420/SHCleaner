@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.5 By SarahH12099
+title SHCleaner v1.3.6 By SarahH12099
 
 MODE 107,25
 
@@ -50,9 +50,10 @@ if not errorlevel 1 (
 
 :menu
 cd \>nul 2>&1
+set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.5
+echo SHCleaner v1.3.6
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -67,12 +68,12 @@ echo [5] Check For Updates
 echo [6] Exit
 echo.
 set /p op=Run:
-if %op%==1 goto 1
-if %op%==2 goto 2
-if %op%==3 goto 3
-if %op%==4 goto 4
-if %op%==5 goto 5
-if %op%==6 goto exit
+if "%op%"=="1" goto 1
+if "%op%"=="2" goto 2
+if "%op%"=="3" goto 3
+if "%op%"=="4" goto 4
+if "%op%"=="5" goto 5
+if "%op%"=="6" goto exit
 goto error
 
 :1
@@ -972,7 +973,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.5
+set Version=1.3.6
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (

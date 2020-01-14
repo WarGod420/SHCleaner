@@ -1,3 +1,7 @@
+SHCleaner v1.3.6:
+- Fixed a bug where if nothing was entered in the menu on launch, the bat file would crash
+- Fixed a bug where after an option is done and they go back to menu, the option could be activated again without typing anything
+
 SHCleaner v1.3.5:
 - Added SOUND FORGE Pro & Pro Suite 13.0 to the application cleaner
 
