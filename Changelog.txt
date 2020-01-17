@@ -1,3 +1,6 @@
+SHCleaner v1.3.7:
+- Added Edge Chromium to Internet Cleaner
+
 SHCleaner v1.3.6:
 - Fixed a bug where if nothing was entered in the menu on launch, the bat file would crash
 - Fixed a bug where after an option is done and they go back to menu, the option could be activated again without typing anything
