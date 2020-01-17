@@ -1,5 +1,5 @@
 SHCleaner v1.3.7:
-- Added Edge Chromium to Internet Cleaner
+- Added Edge Chromium to the Internet Cleaner
 
 SHCleaner v1.3.6:
 - Fixed a bug where if nothing was entered in the menu on launch, the bat file would crash
@@ -61,8 +61,8 @@ SHCleaner v1.2.0:
 - Changed the download link for the dependencies in the Dependency Installer
 
 SHCleaner v1.1.9:
-- Added Firefox to Internet Cleaner
-- Added Cygwin & Cygwin64 to Application Cleaner
+- Added Firefox to the Internet Cleaner
+- Added Cygwin & Cygwin64 to the Application Cleaner
 
 SHCleaner v1.1.8:
 - Added Dependency Installer
