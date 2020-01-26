@@ -1,3 +1,6 @@
+SHCleaner v1.3.8:
+- Added Visual Studio Code to the application cleaner
+
 SHCleaner v1.3.7:
 - Added Edge Chromium to the Internet Cleaner
 
