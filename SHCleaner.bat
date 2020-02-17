@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.8 By SarahH12099
+title SHCleaner v1.3.9 By SarahH12099
 
 MODE 107,25
 
@@ -53,7 +53,7 @@ cd \>nul 2>&1
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.8
+echo SHCleaner v1.3.9
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -674,6 +674,15 @@ taskkill /F /IM "AirParrot2.exe">nul 2>&1
 del /q /f "%localappdata%\AirParrot 2\*.log">nul 2>&1
 )>nul 2>&1
 
+:: Auslogics BoostSpeed 11
+if exist "%programdata%\Auslogics\BoostSpeed\11.x\Logs" (
+del /q /f "%programdata%\Auslogics\BoostSpeed\11.x\Logs\*.log">nul 2>&1
+)>nul 2>&1
+if exist "%programdata%\Auslogics\BoostSpeed\11.x\Reports" (
+del /q /f "%programdata%\Auslogics\BoostSpeed\11.x\Reports\*.xml">nul 2>&1
+del /q /f "%programdata%\Auslogics\BoostSpeed\11.x\Reports\*.html">nul 2>&1
+)>nul 2>&1
+
 :: Auslogics Disk Defrag Ultimate
 if exist "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports" (
 taskkill /F /IM "DiskDefragPro.exe">nul 2>&1
@@ -1166,7 +1175,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.8
+set Version=1.3.9
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (

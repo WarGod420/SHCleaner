@@ -1,3 +1,6 @@
+SHCleaner v1.3.9:
+- Added Auslogics BoostSpeed 11 to the application cleaner
+
 SHCleaner v1.3.8:
 - Added Visual Studio Code to the application cleaner
 
