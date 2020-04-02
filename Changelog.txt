@@ -1,3 +1,7 @@
+SHCleaner v2.0.0:
+- Completely recoded SHCleaner
+- Changed SQLite3 To SHCleaner's ProgramData rather then WinDir
+
 SHCleaner v1.3.9:
 - Added Auslogics BoostSpeed 11 to the application cleaner
 

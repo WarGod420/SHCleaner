@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v1.3.9 By SarahH12099
+title SHCleaner v2.0.0 By SarahH12099
 
 MODE 107,25
 
@@ -12,40 +12,56 @@ if %errorLevel% == 2 (
     goto exit
 )
 
-WHERE sqlite3>nul 2>&1
-IF %ERRORLEVEL% NEQ 0 (
+if not exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
 echo -----------------------------------------------------------------------------------------------------------
-echo SQLite3 Dependency Not Found
+echo SHCleaner Dependency Checker
 echo -----------------------------------------------------------------------------------------------------------
 echo.
-echo Checking Internet Connection
-echo.
-ping -n 2 www.google.com | find "Reply" > nul
-if not errorlevel 1 (
-    echo Connected to the Internet
+echo Checking for SHCleaner ProgramData
+if not exist "%programdata%\SarahH12099\SHCleaner" (
     echo.
-    echo Downloading And Installing Dependencies
+    echo SHCleaner ProgramData Not Found, Making Directory
+    mkdir "%programdata%\SarahH12099\SHCleaner"
     echo.
-    cd "%temp%"
-    if exist "sqlite3.zip" (
-    del /f /q "sqlite3.zip">nul 2>&1
-    )>nul 2>&1
-    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
-    powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
-    if exist "sqlite3.zip" (
-    del /f /q "sqlite3.zip">nul 2>&1
-    )>nul 2>&1
-    cd \
-    echo Done Downloading And Installing Dependencies
+    echo Successfully Made Directory
     echo.
-    pause
-    goto menu
 ) else (
-    echo Not Connected to the Internet, Please Connect to the Internet and Try Again
     echo.
-    pause
-    goto exit
-) 
+    echo SHCleaner ProgramData Exists
+    echo.
+)
+echo Checking for SHCleaner SQLite3
+if not exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
+    echo.
+    echo SHCleaner SQLite3 Not Found
+    echo.
+    ping sarahh12099.github.io -n 1 -w 1000 | find "Reply" > nul
+    if not errorlevel 1 (
+        echo Connected to the Internet
+        echo.
+        echo Downloading And Installing Dependencies
+        echo.
+        cd "%programdata%\SarahH12099\SHCleaner"
+        if exist "sqlite3.zip" (
+            del /f /q "sqlite3.zip">nul 2>&1
+        )>nul 2>&1
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
+        powershell -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%programdata%\SarahH12099\SHCleaner'); }"
+        if exist "sqlite3.zip" (
+            del /f /q "sqlite3.zip">nul 2>&1
+        )>nul 2>&1
+        cd \
+        echo Done Downloading And Installing Dependencies
+        echo.
+        pause
+        goto menu
+    ) else (
+        echo Not Connected to the Internet, Please Connect to the Internet and Try Again
+        echo.
+        pause
+        goto exit
+    )
+)
 )
 
 :menu
@@ -53,14 +69,14 @@ cd \>nul 2>&1
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v1.3.9
+echo SHCleaner v2.0.0
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Select A Tool
 echo =============
 echo.
-echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Internet Explorer)
+echo [1] Delete Internet History/Cache/Cookies [Temporarily Disabled]
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Clear Clipboard
@@ -68,7 +84,7 @@ echo [5] Check For Updates
 echo [6] Exit
 echo.
 set /p op=Run:
-if "%op%"=="1" goto 1
+if "%op%"=="1" goto exit
 if "%op%"=="2" goto 2
 if "%op%"=="3" goto 3
 if "%op%"=="4" goto 4
@@ -818,182 +834,6 @@ taskkill /F /IM "PDFelement.exe">nul 2>&1
 del /q /f "%appdata%\Wondershare\PDFelement 7\Log\*.log">nul 2>&1
 )>nul 2>&1
 
-:: Popcorn-Time
-set PopcornTimeLocation="%localappdata%\Popcorn-Time\User Data"
-if exist "%PopcornTimeLocation%" (
-taskkill /F /IM "Popcorn-Time.exe">nul 2>&1
-cd "%PopcornTimeLocation%">nul 2>&1
-del /q /f "BrowserMetrics*.pma">nul 2>&1
-del /q /f "CrashpadMetrics*.pma">nul 2>&1
-if exist "BrowserMetrics" (
-cd "BrowserMetrics">nul 2>&1
-del /q /f "*.pma">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Crashpad" (
-cd "Crashpad">nul 2>&1
-del /q /f "metadata">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "ShaderCache\GPUCache" (
-cd "ShaderCache\GPUCache">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../../>nul 2>&1
-)>nul 2>&1
-cd \>nul 2>&1
-for /d %%i in (%PopcornTimeLocation%\*) do (
-cd "%%i">nul 2>&1
-del /q /f "*.ldb">nul 2>&1
-del /q /f "*.log">nul 2>&1
-del /q /f "Bookmarks.bak">nul 2>&1
-del /q /f "Cookies*.*">nul 2>&1
-del /q /f "CURRENT*.*">nul 2>&1
-del /q /f "Current Session*.*">nul 2>&1
-del /q /f "Current Tabs*.*">nul 2>&1
-del /q /f "DownloadMetadata*.*">nul 2>&1
-del /q /f "Extension Cookies*.*">nul 2>&1
-del /q /f "History*.*">nul 2>&1
-del /q /f "Last Session*.*">nul 2>&1
-del /q /f "Last Tabs*.*">nul 2>&1
-del /q /f "LOCK*.*">nul 2>&1
-del /q /f "LOG.*">nul 2>&1
-del /q /f "MANIFEST*.*">nul 2>&1
-del /q /f "Network Action*.*">nul 2>&1
-del /q /f "Network Persistent State*.*">nul 2>&1
-del /q /f "QuotaManager*.*">nul 2>&1
-del /q /f "Shortcuts*.*">nul 2>&1
-del /q /f "Top Sites*.*">nul 2>&1
-del /q /f "Visited Links*.*">nul 2>&1
-del /q /f "Web Data*.*">nul 2>&1
-if exist "AutofillStrikeDatabase" (
-cd "AutofillStrikeDatabase">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Cache" (
-cd "Cache">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Code Cache" (
-cd "Code Cache">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "data_reduction_proxy_leveldb" (
-cd "data_reduction_proxy_leveldb">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Extension Rules" (
-cd "Extension Rules">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Extension State" (
-cd "Extension State">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Feature Engagement Tracker" (
-cd "Feature Engagement Tracker">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "File System" (
-cd "File System">nul 2>&1
-del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "GCM Store" (
-cd "GCM Store">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "IndexedDB" (
-cd "IndexedDB">nul 2>&1
-del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "JumpListIconsMostVisited" (
-cd "JumpListIconsMostVisited">nul 2>&1
-del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "JumpListIconsRecentClosed" (
-cd "JumpListIconsRecentClosed">nul 2>&1
-del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Local Extension Settings" (
-cd "Local Extension Settings">nul 2>&1
-del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Local Storage\leveldb" (
-cd "Local Storage\leveldb">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
-)>nul 2>&1
-if exist "Managed Extension Settings" (
-cd "Managed Extension Settings">nul 2>&1
-del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Platform Notifications" (
-cd "Platform Notifications">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Service Worker\Database" (
-cd "Service Worker\Database">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
-)>nul 2>&1
-if exist "Session Storage" (
-cd "Session Storage">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "shared_proto_db" (
-cd "shared_proto_db">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "shared_proto_db\metadata" (
-cd "shared_proto_db\metadata">nul 2>&1
-del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
-)>nul 2>&1
-if exist "Site Characteristics Database" (
-cd "Site Characteristics Database">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "Sync Data" (
-cd "Sync Data">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-if exist "VideoDecodeStats" (
-cd "VideoDecodeStats">nul 2>&1
-del /q /s /f "*.*">nul 2>&1
-FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
-)>nul 2>&1
-cd \>nul 2>&1
-)>nul 2>&1
-)>nul 2>&1
-
 :: Process Lasso
 if exist "%appdata%\ProcessLasso\logs" (
 del /q /f "%appdata%\ProcessLasso\logs\*.log">nul 2>&1
@@ -1088,16 +928,6 @@ if exist "E:\$Recycle.Bin" (
 rd /q /s E:\$Recycle.Bin>nul 2>&1
 )>nul 2>&1
 
-:: Windows Event Logs
-if exist "%windir%\System32\winevt\Logs" (
-del /q /f "%windir%\System32\winevt\Logs\*.evtx">nul 2>&1
-)>nul 2>&1
-
-:: Windows Health
-if exist "%programdata%\Microsoft\Windows Security Health\Logs" (
-del /q /f "%programdata%\Microsoft\Windows Security Health\Logs\*.etl">nul 2>&1
-)>nul 2>&1
-
 :: Windows Temp
 if exist "%windir%\Temp" (
 del /q /s /f "%windir%\Temp\*.*">nul 2>&1
@@ -1161,7 +991,7 @@ echo.
 
 :: Update Checker
 
-ping -n 2 www.google.com | find "Reply" > nul
+ping sarahh12099.github.io -n 1 -w 1000 | find "Reply" > nul
 if errorlevel 1 (
     echo Not Connected to the Internet, Please Connect to the Internet and Try Again
     echo.
@@ -1171,11 +1001,11 @@ if errorlevel 1 (
 
 Set "MD5="
 For /f "skip=1 Delims=" %%# in (
-  'certutil -hashfile "%windir%\sqlite3.exe" MD5'
+  'certutil -hashfile "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" MD5'
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=1.3.9
+set Version=2.0.0
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
@@ -1203,26 +1033,31 @@ if %Check% == %Version% (
     echo.
 ) else (
     echo SHCleaner is Outdated
+    echo.
     echo Opening update page
     echo.
     start "" https://github.com/SarahH12099/SHCleaner
 )
 
-if exist "%windir%\sqlite3.exe" (
+if exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
 if %Build% == %MD5% (
     echo SHCleaner Dependencies are Up to Date
 ) else (
     echo SHCleaner Dependencies are Outdated
+    echo.
     echo Preparing to Update Dependencies
-    del /f /q "%windir%\sqlite3.exe">nul 2>&1
+    echo.
+    del /f /q "%programdata%\SarahH12099\SHCleaner\sqlite3.exe">nul 2>&1
     echo Downloading And Installing Dependencies
+    echo.
+    cd "%programdata%\SarahH12099\SHCleaner"
     if exist "sqlite3.zip" (
-    del /f /q "sqlite3.zip">nul 2>&1
+        del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
     powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
-    powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%windir%'); }"
+    powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%programdata%\SarahH12099\SHCleaner'); }"
     if exist "sqlite3.zip" (
-    del /f /q "sqlite3.zip">nul 2>&1
+        del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
     echo Done Downloading And Installing Dependencies
 )
