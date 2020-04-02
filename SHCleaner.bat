@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.0 By SarahH12099
+title SHCleaner v2.0.1 By SarahH12099
 
 MODE 107,25
 
@@ -69,14 +69,14 @@ cd \>nul 2>&1
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.0
+echo SHCleaner v2.0.1
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Select A Tool
 echo =============
 echo.
-echo [1] Delete Internet History/Cache/Cookies [Temporarily Disabled]
+echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Internet Explorer)
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Clear Clipboard
@@ -84,7 +84,7 @@ echo [5] Check For Updates
 echo [6] Exit
 echo.
 set /p op=Run:
-if "%op%"=="1" goto exit
+if "%op%"=="1" goto 1
 if "%op%"=="2" goto 2
 if "%op%"=="3" goto 3
 if "%op%"=="4" goto 4
@@ -104,28 +104,29 @@ echo Cleaning Internet History/Cache/Cookies
 set BraveLocation="%localappdata%\BraveSoftware\Brave-Browser\User Data"
 if exist "%BraveLocation%" (
 taskkill /F /IM "brave.exe">nul 2>&1
-cd "%BraveLocation%">nul 2>&1
+cd "%BraveLocation%"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
-cd "BrowserMetrics">nul 2>&1
+cd "BrowserMetrics"
 del /q /f "*.pma">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Crashpad" (
-cd "Crashpad">nul 2>&1
+cd "Crashpad"
 del /q /f "metadata">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "ShaderCache\GPUCache" (
-cd "ShaderCache\GPUCache">nul 2>&1
+cd "ShaderCache\GPUCache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
-cd \>nul 2>&1
+cd \
 for /d %%i in (%BraveLocation%\*) do (
-cd "%%i">nul 2>&1
+cd "%%i"
+if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
 del /q /f "Bookmarks.bak">nul 2>&1
@@ -149,130 +150,131 @@ del /q /f "Top Sites*.*">nul 2>&1
 del /q /f "Visited Links*.*">nul 2>&1
 del /q /f "Web Data*.*">nul 2>&1
 if exist "AutofillStrikeDatabase" (
-cd "AutofillStrikeDatabase">nul 2>&1
+cd "AutofillStrikeDatabase"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Cache" (
-cd "Cache">nul 2>&1
+cd "Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Code Cache" (
-cd "Code Cache">nul 2>&1
+cd "Code Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "data_reduction_proxy_leveldb" (
-cd "data_reduction_proxy_leveldb">nul 2>&1
+cd "data_reduction_proxy_leveldb"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension Rules" (
-cd "Extension Rules">nul 2>&1
+cd "Extension Rules"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension State" (
-cd "Extension State">nul 2>&1
+cd "Extension State"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Feature Engagement Tracker" (
-cd "Feature Engagement Tracker">nul 2>&1
+cd "Feature Engagement Tracker"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "File System" (
-cd "File System">nul 2>&1
+cd "File System"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "GCM Store" (
-cd "GCM Store">nul 2>&1
+cd "GCM Store"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "IndexedDB" (
-cd "IndexedDB">nul 2>&1
+cd "IndexedDB"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsMostVisited" (
-cd "JumpListIconsMostVisited">nul 2>&1
+cd "JumpListIconsMostVisited"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsRecentClosed" (
-cd "JumpListIconsRecentClosed">nul 2>&1
+cd "JumpListIconsRecentClosed"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Extension Settings" (
-cd "Local Extension Settings">nul 2>&1
+cd "Local Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Storage\leveldb" (
-cd "Local Storage\leveldb">nul 2>&1
+cd "Local Storage\leveldb"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Managed Extension Settings" (
-cd "Managed Extension Settings">nul 2>&1
+cd "Managed Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Platform Notifications" (
-cd "Platform Notifications">nul 2>&1
+cd "Platform Notifications"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Service Worker\Database" (
-cd "Service Worker\Database">nul 2>&1
+cd "Service Worker\Database"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Session Storage" (
-cd "Session Storage">nul 2>&1
+cd "Session Storage"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db" (
-cd "shared_proto_db">nul 2>&1
+cd "shared_proto_db"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db\metadata" (
-cd "shared_proto_db\metadata">nul 2>&1
+cd "shared_proto_db\metadata"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Site Characteristics Database" (
-cd "Site Characteristics Database">nul 2>&1
+cd "Site Characteristics Database"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Sync Data" (
-cd "Sync Data">nul 2>&1
+cd "Sync Data"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "VideoDecodeStats" (
-cd "VideoDecodeStats">nul 2>&1
+cd "VideoDecodeStats"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
-cd \>nul 2>&1
+)>nul 2>&1
+cd \
 )>nul 2>&1
 )>nul 2>&1
 
@@ -280,28 +282,29 @@ cd \>nul 2>&1
 set ChromeLocation="%localappdata%\Google\Chrome\User Data"
 if exist "%ChromeLocation%" (
 taskkill /F /IM "chrome.exe">nul 2>&1
-cd "%ChromeLocation%">nul 2>&1
+cd "%ChromeLocation%"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
-cd "BrowserMetrics">nul 2>&1
+cd "BrowserMetrics"
 del /q /f "*.pma">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Crashpad" (
-cd "Crashpad">nul 2>&1
+cd "Crashpad"
 del /q /f "metadata">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "ShaderCache\GPUCache" (
-cd "ShaderCache\GPUCache">nul 2>&1
+cd "ShaderCache\GPUCache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
-cd \>nul 2>&1
+cd \
 for /d %%i in (%ChromeLocation%\*) do (
-cd "%%i">nul 2>&1
+cd "%%i"
+if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
 del /q /f "Bookmarks.bak">nul 2>&1
@@ -325,130 +328,131 @@ del /q /f "Top Sites*.*">nul 2>&1
 del /q /f "Visited Links*.*">nul 2>&1
 del /q /f "Web Data*.*">nul 2>&1
 if exist "AutofillStrikeDatabase" (
-cd "AutofillStrikeDatabase">nul 2>&1
+cd "AutofillStrikeDatabase"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Cache" (
-cd "Cache">nul 2>&1
+cd "Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Code Cache" (
-cd "Code Cache">nul 2>&1
+cd "Code Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "data_reduction_proxy_leveldb" (
-cd "data_reduction_proxy_leveldb">nul 2>&1
+cd "data_reduction_proxy_leveldb"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension Rules" (
-cd "Extension Rules">nul 2>&1
+cd "Extension Rules"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension State" (
-cd "Extension State">nul 2>&1
+cd "Extension State"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Feature Engagement Tracker" (
-cd "Feature Engagement Tracker">nul 2>&1
+cd "Feature Engagement Tracker"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "File System" (
-cd "File System">nul 2>&1
+cd "File System"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "GCM Store" (
-cd "GCM Store">nul 2>&1
+cd "GCM Store"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "IndexedDB" (
-cd "IndexedDB">nul 2>&1
+cd "IndexedDB"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsMostVisited" (
-cd "JumpListIconsMostVisited">nul 2>&1
+cd "JumpListIconsMostVisited"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsRecentClosed" (
-cd "JumpListIconsRecentClosed">nul 2>&1
+cd "JumpListIconsRecentClosed"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Extension Settings" (
-cd "Local Extension Settings">nul 2>&1
+cd "Local Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Storage\leveldb" (
-cd "Local Storage\leveldb">nul 2>&1
+cd "Local Storage\leveldb"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Managed Extension Settings" (
-cd "Managed Extension Settings">nul 2>&1
+cd "Managed Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Platform Notifications" (
-cd "Platform Notifications">nul 2>&1
+cd "Platform Notifications"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Service Worker\Database" (
-cd "Service Worker\Database">nul 2>&1
+cd "Service Worker\Database"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Session Storage" (
-cd "Session Storage">nul 2>&1
+cd "Session Storage"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db" (
-cd "shared_proto_db">nul 2>&1
+cd "shared_proto_db"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db\metadata" (
-cd "shared_proto_db\metadata">nul 2>&1
+cd "shared_proto_db\metadata"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Site Characteristics Database" (
-cd "Site Characteristics Database">nul 2>&1
+cd "Site Characteristics Database"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Sync Data" (
-cd "Sync Data">nul 2>&1
+cd "Sync Data"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "VideoDecodeStats" (
-cd "VideoDecodeStats">nul 2>&1
+cd "VideoDecodeStats"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
-cd \>nul 2>&1
+)>nul 2>&1
+cd \
 )>nul 2>&1
 )>nul 2>&1
 
@@ -456,28 +460,29 @@ cd \>nul 2>&1
 set EdgeChromiumLocation="%localappdata%\Microsoft\Edge\User Data"
 if exist "%EdgeChromiumLocation%" (
 taskkill /F /IM "chrome.exe">nul 2>&1
-cd "%EdgeChromiumLocation%">nul 2>&1
+cd "%EdgeChromiumLocation%"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
-cd "BrowserMetrics">nul 2>&1
+cd "BrowserMetrics"
 del /q /f "*.pma">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Crashpad" (
-cd "Crashpad">nul 2>&1
+cd "Crashpad"
 del /q /f "metadata">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "ShaderCache\GPUCache" (
-cd "ShaderCache\GPUCache">nul 2>&1
+cd "ShaderCache\GPUCache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
-cd \>nul 2>&1
+cd \
 for /d %%i in (%EdgeChromiumLocation%\*) do (
-cd "%%i">nul 2>&1
+cd "%%i"
+if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
 del /q /f "*.log">nul 2>&1
 del /q /f "Bookmarks.bak">nul 2>&1
@@ -501,130 +506,131 @@ del /q /f "Top Sites*.*">nul 2>&1
 del /q /f "Visited Links*.*">nul 2>&1
 del /q /f "Web Data*.*">nul 2>&1
 if exist "AutofillStrikeDatabase" (
-cd "AutofillStrikeDatabase">nul 2>&1
+cd "AutofillStrikeDatabase"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Cache" (
-cd "Cache">nul 2>&1
+cd "Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Code Cache" (
-cd "Code Cache">nul 2>&1
+cd "Code Cache"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "data_reduction_proxy_leveldb" (
-cd "data_reduction_proxy_leveldb">nul 2>&1
+cd "data_reduction_proxy_leveldb"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension Rules" (
-cd "Extension Rules">nul 2>&1
+cd "Extension Rules"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Extension State" (
-cd "Extension State">nul 2>&1
+cd "Extension State"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Feature Engagement Tracker" (
-cd "Feature Engagement Tracker">nul 2>&1
+cd "Feature Engagement Tracker"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "File System" (
-cd "File System">nul 2>&1
+cd "File System"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "GCM Store" (
-cd "GCM Store">nul 2>&1
+cd "GCM Store"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "IndexedDB" (
-cd "IndexedDB">nul 2>&1
+cd "IndexedDB"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsMostVisited" (
-cd "JumpListIconsMostVisited">nul 2>&1
+cd "JumpListIconsMostVisited"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "JumpListIconsRecentClosed" (
-cd "JumpListIconsRecentClosed">nul 2>&1
+cd "JumpListIconsRecentClosed"
 del /q /s /f "*.tmp">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Extension Settings" (
-cd "Local Extension Settings">nul 2>&1
+cd "Local Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Local Storage\leveldb" (
-cd "Local Storage\leveldb">nul 2>&1
+cd "Local Storage\leveldb"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Managed Extension Settings" (
-cd "Managed Extension Settings">nul 2>&1
+cd "Managed Extension Settings"
 del /q /s /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Platform Notifications" (
-cd "Platform Notifications">nul 2>&1
+cd "Platform Notifications"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Service Worker\Database" (
-cd "Service Worker\Database">nul 2>&1
+cd "Service Worker\Database"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Session Storage" (
-cd "Session Storage">nul 2>&1
+cd "Session Storage"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db" (
-cd "shared_proto_db">nul 2>&1
+cd "shared_proto_db"
 del /q /f "LOG*.*">nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "shared_proto_db\metadata" (
-cd "shared_proto_db\metadata">nul 2>&1
+cd "shared_proto_db\metadata"
 del /q /f "LOG*.*">nul 2>&1
-cd ../../>nul 2>&1
+cd ../../
 )>nul 2>&1
 if exist "Site Characteristics Database" (
-cd "Site Characteristics Database">nul 2>&1
+cd "Site Characteristics Database"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "Sync Data" (
-cd "Sync Data">nul 2>&1
+cd "Sync Data"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
 if exist "VideoDecodeStats" (
-cd "VideoDecodeStats">nul 2>&1
+cd "VideoDecodeStats"
 del /q /s /f "*.*">nul 2>&1
 FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
-cd ../>nul 2>&1
+cd ../
 )>nul 2>&1
-cd \>nul 2>&1
+)>nul 2>&1
+cd \
 )>nul 2>&1
 )>nul 2>&1
 
@@ -633,14 +639,14 @@ set FirefoxLocation="%appdata%\Mozilla\Firefox\Profiles"
 if exist "%FirefoxLocation%" (
 taskkill /F /IM "firefox.exe">nul 2>&1
 for /d %%i in (%FirefoxLocation%\*) do (
-cd "%%i">nul 2>&1
+cd "%%i"
 if exist "cookies.sqlite" (
 del /q /f "cookies.sqlite">nul 2>&1
 )>nul 2>&1
 if exist "places.sqlite" (
-sqlite3 places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
+"%programdata%\SarahH12099\SHCleaner\sqlite3.exe" places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
 )>nul 2>&1
-cd \>nul 2>&1
+cd \
 )>nul 2>&1
 )>nul 2>&1
 
@@ -1005,7 +1011,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.0
+set Version=2.0.1
 cd %temp%>nul 2>&1
 
 if exist "sqlite3md5.txt" (
@@ -1055,7 +1061,7 @@ if %Build% == %MD5% (
         del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
     powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/sqlite3.zip -OutFile sqlite3.zip"
-    powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%programdata%\SarahH12099\SHCleaner'); }"
+    powershell -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('sqlite3.zip', '%programdata%\SarahH12099\SHCleaner'); }"
     if exist "sqlite3.zip" (
         del /f /q "sqlite3.zip">nul 2>&1
     )>nul 2>&1
