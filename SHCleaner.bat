@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.1 By SarahH12099
+title SHCleaner v2.0.2 By SarahH12099
 
 MODE 107,25
 
@@ -65,11 +65,11 @@ if not exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
 )
 
 :menu
-cd \>nul 2>&1
+cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.1
+echo SHCleaner v2.0.2
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -79,9 +79,10 @@ echo.
 echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Internet Explorer)
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
-echo [4] Clear Clipboard
-echo [5] Check For Updates
-echo [6] Exit
+echo [4] Windows Update Cleanup
+echo [5] Clear Clipboard
+echo [6] Check For Updates
+echo [7] Exit
 echo.
 set /p op=Run:
 if "%op%"=="1" goto 1
@@ -89,7 +90,8 @@ if "%op%"=="2" goto 2
 if "%op%"=="3" goto 3
 if "%op%"=="4" goto 4
 if "%op%"=="5" goto 5
-if "%op%"=="6" goto exit
+if "%op%"=="6" goto 6
+if "%op%"=="7" goto exit
 goto error
 
 :1
@@ -684,6 +686,12 @@ taskkill /F /IM "photoshop.exe">nul 2>&1
 del /q /f "%appdata%\Adobe\Adobe Photoshop 2020\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
+:: Affinity Designer
+if exist "%appdata%\Affinity\Designer\1.0\Log.txt" (
+taskkill /F /IM "Designer.exe">nul 2>&1
+del /q /f "%appdata%\Affinity\Designer\1.0\Log.txt">nul 2>&1
+)>nul 2>&1
+
 :: Affinity Photo
 if exist "%appdata%\Affinity\Photo\1.0\Log.txt" (
 taskkill /F /IM "Photo.exe">nul 2>&1
@@ -808,6 +816,24 @@ taskkill /F /IM "HitmanPro.exe">nul 2>&1
 del /q /f "%programdata%\HitmanPro\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
+:: Icecream Password Manager
+if exist "%systemdrive%\Users\%username%\.Icecream Password Manager\log" (
+taskkill /F /IM "PasswordManager.exe">nul 2>&1
+del /q /f "%systemdrive%\Users\%username%\.Icecream Password Manager\log\*.txt">nul 2>&1
+)>nul 2>&1
+
+:: Icecream PDF Editor
+if exist "%systemdrive%\Users\%username%\.Icecream PDF Editor\log" (
+taskkill /F /IM "icepdfeditor.exe">nul 2>&1
+del /q /f "%systemdrive%\Users\%username%\.Icecream PDF Editor\log\*.txt">nul 2>&1
+)>nul 2>&1
+
+:: Icecream Screen Recorder
+if exist "%systemdrive%\Users\%username%\.Icecream Screen Recorder\log" (
+taskkill /F /IM "recorder.exe">nul 2>&1
+del /q /f "%systemdrive%\Users\%username%\.Icecream Screen Recorder\log\*.txt">nul 2>&1
+)>nul 2>&1
+
 :: Intel
 if exist "%programdata%\Intel\Logs" (
 del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
@@ -816,6 +842,13 @@ del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
 :: Git
 if exist "%systemdrive%\Users\%username%\.bash_history" (
 del /q /f "%systemdrive%\Users\%username%\.bash_history">nul 2>&1
+)>nul 2>&1
+
+:: Mailbird
+if exist "%localappdata%\Mailbird" (
+taskkill /F /IM "Mailbird.exe">nul 2>&1
+del /q /f "%localappdata%\Mailbird\CefLog.log">nul 2>&1
+del /q /f "%localappdata%\Mailbird\Log.log">nul 2>&1
 )>nul 2>&1
 
 :: McAfee Endpoint Security
@@ -940,17 +973,6 @@ del /q /s /f "%windir%\Temp\*.*">nul 2>&1
 FOR /D %%p IN ("%windir%\Temp\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
-:: Windows Updates
-if exist "%windir%\SoftwareDistribution\Download" (
-net stop "wuauserv">nul 2>&1
-del /q /s /f "%windir%\SoftwareDistribution\Download\*.*">nul 2>&1
-FOR /D %%p IN ("%windir%\SoftwareDistribution\Download\*.*") DO rmdir "%%p" /s /q>nul 2>&1
-net start "wuauserv">nul 2>&1
-)>nul 2>&1
-if exist "%windir%\Logs\WindowsUpdate" (
-del /q /f "%windir%\Logs\WindowsUpdate\*.etl">nul 2>&1
-)>nul 2>&1
-
 :: Windows Recents & Thumbnail Cache
 taskkill /F /IM "explorer.exe">nul 2>&1
 if exist "%appdata%\Microsoft\Windows\Recent" (
@@ -968,7 +990,36 @@ echo.
 pause
 goto menu
 
+
 :4
+cls
+echo -----------------------------------------------------------------------------------------------------------
+echo Windows Update Cleanup
+echo -----------------------------------------------------------------------------------------------------------
+echo.
+echo Doing Windows Update Cleanup
+
+:: Windows Updates Downloads
+if exist "%windir%\SoftwareDistribution\Download" (
+net stop "wuauserv">nul 2>&1
+del /q /s /f "%windir%\SoftwareDistribution\Download\*.*">nul 2>&1
+FOR /D %%p IN ("%windir%\SoftwareDistribution\Download\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+net start "wuauserv">nul 2>&1
+)>nul 2>&1
+
+:: Windows Updates Logs
+if exist "%windir%\Logs\WindowsUpdate" (
+del /q /f "%windir%\Logs\WindowsUpdate\*.etl">nul 2>&1
+)>nul 2>&1
+
+echo.
+echo Done Windows Update Cleanup
+:: Go Back To Menu
+echo.
+pause
+goto menu
+
+:5
 cls
 echo -----------------------------------------------------------------------------------------------------------
 echo Clear Clipboard
@@ -986,7 +1037,7 @@ echo.
 pause
 goto menu
 
-:5
+:6
 cls
 echo -----------------------------------------------------------------------------------------------------------
 echo Check For Updates
@@ -1011,8 +1062,8 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.1
-cd %temp%>nul 2>&1
+set Version=2.0.2
+cd %temp%
 
 if exist "sqlite3md5.txt" (
 del /f /q "sqlite3md5.txt">nul 2>&1

@@ -1,6 +1,12 @@
+SHCleaner v2.0.2:
+- Added Mailbird, Icecream Screen Recorder, Icecream Password Manager, Icecream PDF Editor to the application
+- Added a Windows Update Cleanup option
+- Other minor changes
+
 SHCleaner v2.0.1:
 - Enabled the Browser Cleaner
 - Updated the Browser Cleaner to support the version 2 changes
+- Fixed a typo in the Updater
 
 SHCleaner v2.0.0:
 - Completely recoded SHCleaner
