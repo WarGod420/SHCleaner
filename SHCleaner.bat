@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.3 By SarahH12099
+title SHCleaner v2.0.4 By SarahH12099
 
 MODE 107,25
 
@@ -69,7 +69,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.3
+echo SHCleaner v2.0.4
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -634,10 +634,9 @@ cd \
 )>nul 2>&1
 
 :: Firefox
-set FirefoxLocation="%appdata%\Mozilla\Firefox\Profiles"
-if exist "%FirefoxLocation%" (
+if exist "%appdata%\Mozilla\Firefox\Profiles" (
 taskkill /F /IM "firefox.exe">nul 2>&1
-for /d %%i in (%FirefoxLocation%\*) do (
+for /d %%i in ("%appdata%\Mozilla\Firefox\Profiles\*") do (
 cd "%%i"
 if exist "cookies.sqlite" (
 del /q /f "cookies.sqlite">nul 2>&1
@@ -1059,7 +1058,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.3
+set Version=2.0.4
 cd %temp%
 
 if exist "sqlite3md5.txt" (
