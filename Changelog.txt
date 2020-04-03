@@ -1,3 +1,7 @@
+SHCleaner v2.0.5:
+- Fixed Cygwin and Cygwin64 in the Application Cleaner
+- Improved on Icecream PDF Editor cleaning in the Application Cleaner
+
 SHCleaner v2.0.4:
 - Made a small change to Firefox in the Browser Cleaner
 

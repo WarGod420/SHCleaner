@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.4 By SarahH12099
+title SHCleaner v2.0.5 By SarahH12099
 
 MODE 107,25
 
@@ -69,7 +69,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.4
+echo SHCleaner v2.0.5
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -746,13 +746,13 @@ del /q /f "%programdata%\Auslogics\Windows Slimmer\2.x\Reports\*.html">nul 2>&1
 )>nul 2>&1
 
 :: Cygwin
-if exist "%systemdrive%\cygwin\home" (1
-del /q /s /f ".bash_history">nul 2>&1
+if exist "%systemdrive%\cygwin\home\.bash_history" (1
+del /q /s /f "%systemdrive%\cygwin\home\.bash_history">nul 2>&1
 )>nul 2>&1
 
 :: Cygwin64
-if exist "%systemdrive%\cygwin64\home" (1
-del /q /s /f ".bash_history">nul 2>&1
+if exist "%systemdrive%\cygwin64\home\.bash_history" (1
+del /q /s /f "%systemdrive%\cygwin64\home\.bash_history">nul 2>&1
 )>nul 2>&1
 
 :: Discord
@@ -806,6 +806,11 @@ del /q /s /f "%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Supp
 FOR /D %%p IN ("%systemdrive%\Users\%username%\Documents\Image-Line\FL Studio\Support\Logs\*.*") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
+:: Git
+if exist "%systemdrive%\Users\%username%\.bash_history" (
+del /q /f "%systemdrive%\Users\%username%\.bash_history">nul 2>&1
+)>nul 2>&1
+
 :: HitmanPro
 if exist "%programdata%\HitmanPro\Logs" (
 taskkill /F /IM "HitmanPro.exe">nul 2>&1
@@ -823,6 +828,9 @@ if exist "%systemdrive%\Users\%username%\.Icecream PDF Editor\log" (
 taskkill /F /IM "icepdfeditor.exe">nul 2>&1
 del /q /f "%systemdrive%\Users\%username%\.Icecream PDF Editor\log\*.txt">nul 2>&1
 )>nul 2>&1
+if exist "%programdata%\sx.log" (
+del /q /f "%programdata%\sx.log">nul 2>&1
+)>nul 2>&1
 
 :: Icecream Screen Recorder
 if exist "%systemdrive%\Users\%username%\.Icecream Screen Recorder\log" (
@@ -835,11 +843,6 @@ if exist "%programdata%\Intel\Logs" (
 del /q /f "%programdata%\Intel\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
-:: Git
-if exist "%systemdrive%\Users\%username%\.bash_history" (
-del /q /f "%systemdrive%\Users\%username%\.bash_history">nul 2>&1
-)>nul 2>&1
-
 :: Mailbird
 if exist "%localappdata%\Mailbird" (
 taskkill /F /IM "Mailbird.exe">nul 2>&1
@@ -850,6 +853,12 @@ del /q /f "%localappdata%\Mailbird\Log.log">nul 2>&1
 :: McAfee Endpoint Security
 if exist "%programdata%\McAfee\Endpoint Security\Logs" (
 del /q /f "%programdata%\McAfee\Endpoint Security\Logs\*.log">nul 2>&1
+)>nul 2>&1
+
+:: MEGAsync
+if exist "%localappdata%\Mega Limited\MEGAsync\logs" (
+taskkill /F /IM "MEGAsync.exe">nul 2>&1
+del /q /f "%localappdata%\Mega Limited\MEGAsync\logs\*.log">nul 2>&1
 )>nul 2>&1
 
 :: Minecraft
@@ -1058,7 +1067,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.4
+set Version=2.0.5
 cd %temp%
 
 if exist "sqlite3md5.txt" (

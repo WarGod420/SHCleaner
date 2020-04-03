@@ -1,7 +1,7 @@
 # SHCleaner
 A bat file PC Cleaner for Windows 10
 <br><br>
-Latest Version: 2.0.4
+Latest Version: 2.0.5
 <br><br>
 Features:
 - Internet Cleaner (History, Cache, Logs, Etc. Doesn't clean saved passwords).
