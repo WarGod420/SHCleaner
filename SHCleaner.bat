@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.2 By SarahH12099
+title SHCleaner v2.0.3 By SarahH12099
 
 MODE 107,25
 
@@ -69,7 +69,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.2
+echo SHCleaner v2.0.3
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -103,10 +103,9 @@ echo.
 echo Cleaning Internet History/Cache/Cookies
 
 :: Brave
-set BraveLocation="%localappdata%\BraveSoftware\Brave-Browser\User Data"
-if exist "%BraveLocation%" (
+if exist "%localappdata%\BraveSoftware\Brave-Browser\User Data" (
 taskkill /F /IM "brave.exe">nul 2>&1
-cd "%BraveLocation%"
+cd "%localappdata%\BraveSoftware\Brave-Browser\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
@@ -126,7 +125,7 @@ FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../../
 )>nul 2>&1
 cd \
-for /d %%i in (%BraveLocation%\*) do (
+for /d %%i in ("%localappdata%\BraveSoftware\Brave-Browser\User Data\*") do (
 cd "%%i"
 if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
@@ -281,10 +280,9 @@ cd \
 )>nul 2>&1
 
 :: Chrome
-set ChromeLocation="%localappdata%\Google\Chrome\User Data"
-if exist "%ChromeLocation%" (
+if exist "%localappdata%\Google\Chrome\User Data" (
 taskkill /F /IM "chrome.exe">nul 2>&1
-cd "%ChromeLocation%"
+cd "%localappdata%\Google\Chrome\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
@@ -304,7 +302,7 @@ FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../../
 )>nul 2>&1
 cd \
-for /d %%i in (%ChromeLocation%\*) do (
+for /d %%i in ("%localappdata%\Google\Chrome\User Data\*") do (
 cd "%%i"
 if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
@@ -459,10 +457,9 @@ cd \
 )>nul 2>&1
 
 :: Edge Chromium
-set EdgeChromiumLocation="%localappdata%\Microsoft\Edge\User Data"
-if exist "%EdgeChromiumLocation%" (
+if exist "%localappdata%\Microsoft\Edge\User Data" (
 taskkill /F /IM "chrome.exe">nul 2>&1
-cd "%EdgeChromiumLocation%"
+cd "%localappdata%\Microsoft\Edge\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
 if exist "BrowserMetrics" (
@@ -482,7 +479,7 @@ FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
 cd ../../
 )>nul 2>&1
 cd \
-for /d %%i in (%EdgeChromiumLocation%\*) do (
+for /d %%i in ("%localappdata%\Microsoft\Edge\User Data\*") do (
 cd "%%i"
 if exist "History*.*" (
 del /q /f "*.ldb">nul 2>&1
@@ -1062,7 +1059,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.2
+set Version=2.0.3
 cd %temp%
 
 if exist "sqlite3md5.txt" (
