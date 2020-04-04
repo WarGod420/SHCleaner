@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.6 By SarahH12099
+title SHCleaner v2.0.7 By SarahH12099
 
 MODE 107,25
 
@@ -69,14 +69,14 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.6
+echo SHCleaner v2.0.7
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Select A Tool
 echo =============
 echo.
-echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Internet Explorer)
+echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox)
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Windows Update Cleanup
@@ -648,13 +648,6 @@ cd \
 )>nul 2>&1
 )>nul 2>&1
 
-:: Internet Explorer
-taskkill /F /IM "iexplore.exe">nul 2>&1
-RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 1
-RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 2
-RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 8
-RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 16
-
 echo.
 echo Done Cleaning Internet History/Cache/Cookies
 :: Go Back To Menu
@@ -1067,7 +1060,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.6
+set Version=2.0.7
 cd %temp%
 
 if exist "sqlite3md5.txt" (
