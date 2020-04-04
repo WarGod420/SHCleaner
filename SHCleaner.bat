@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.5 By SarahH12099
+title SHCleaner v2.0.6 By SarahH12099
 
 MODE 107,25
 
@@ -69,7 +69,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.5
+echo SHCleaner v2.0.6
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -905,8 +905,8 @@ FOR /D %%p IN ("%localappdata%\VS Revo Group\Revo Uninstaller Pro\Logs\*.*") DO 
 :: SOUND FORGE Pro & Pro Suite 13.0
 if exist "%localappdata%\MAGIX\SOUND FORGE Pro\13.0" (
 taskkill /F /IM "Forge130.exe">nul 2>&1
-del /q /s /f "%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.*">nul 2>&1
-FOR /D %%p IN ("%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+del /q /s /f "%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.log">nul 2>&1
+FOR /D %%p IN ("%localappdata%\MAGIX\SOUND FORGE Pro\13.0\*.log") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
 :: Steam
@@ -919,8 +919,8 @@ FOR /D %%p IN ("%localappdata%\Steam\htmlcache\*.*") DO rmdir "%%p" /s /q>nul 2>
 :: VEGAS Pro 17.0
 if exist "%localappdata%\VEGAS Pro\17.0" (
 taskkill /F /IM "vegas170.exe">nul 2>&1
-del /q /s /f "%localappdata%\VEGAS Pro\17.0\*.*">nul 2>&1
-FOR /D %%p IN ("%localappdata%\VEGAS Pro\17.0\*.*") DO rmdir "%%p" /s /q>nul 2>&1
+del /q /s /f "%localappdata%\VEGAS Pro\17.0\*.log">nul 2>&1
+FOR /D %%p IN ("%localappdata%\VEGAS Pro\17.0\*.log") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
 :: Visual Studio Code
@@ -1067,7 +1067,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.5
+set Version=2.0.6
 cd %temp%
 
 if exist "sqlite3md5.txt" (
