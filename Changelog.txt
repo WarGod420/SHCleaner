@@ -1,5 +1,9 @@
+SHCleaner v2.0.8:
+- Added Auslogics Anti-Malware to the Application Cleaner
+- Slightly improved Firefox cleaning in the Browser Cleaner
+
 SHCleaner v2.0.7:
-- Removed Internet Explorer from Browser Cleaning
+- Removed Internet Explorer from Browser Cleaning due to Windows issues
 
 SHCleaner v2.0.6:
 - Changed SOUND FORGE Pro + Suite 14.0 and VEGAS Pro 17.0 cleaning in the Application Cleaner

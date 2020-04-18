@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.7 By SarahH12099
+title SHCleaner v2.0.8 By SarahH12099
 
 MODE 107,25
 
@@ -69,7 +69,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.7
+echo SHCleaner v2.0.8
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -641,6 +641,9 @@ cd "%%i"
 if exist "cookies.sqlite" (
 del /q /f "cookies.sqlite">nul 2>&1
 )>nul 2>&1
+if exist "formhistory.sqlite" (
+del /q /f "formhistory.sqlite">nul 2>&1
+)>nul 2>&1
 if exist "places.sqlite" (
 "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
 )>nul 2>&1
@@ -691,6 +694,11 @@ del /q /f "%appdata%\Affinity\Photo\1.0\Log.txt">nul 2>&1
 if exist "%localappdata%\AirParrot 2" (
 taskkill /F /IM "AirParrot2.exe">nul 2>&1
 del /q /f "%localappdata%\AirParrot 2\*.log">nul 2>&1
+)>nul 2>&1
+
+:: Auslogics Anti-Malware
+if exist "%programdata%\Auslogics\Anti-Malware\1.x\Logs" (
+del /q /f "%programdata%\Auslogics\Anti-Malware\1.x\Logs\*.log">nul 2>&1
 )>nul 2>&1
 
 :: Auslogics BoostSpeed 11
@@ -1060,7 +1068,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.7
+set Version=2.0.8
 cd %temp%
 
 if exist "sqlite3md5.txt" (
