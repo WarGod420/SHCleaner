@@ -1,3 +1,7 @@
+SHCleaner v2.0.9:
+- Fixed Edge not closing on cleaning
+- Fixed a typo in the Internet Cleaner Browsers titles
+
 SHCleaner v2.0.8:
 - Added Auslogics Anti-Malware to the Application Cleaner
 - Slightly improved Firefox cleaning in the Browser Cleaner
