@@ -1,3 +1,8 @@
+SHCleaner v3.0.0:
+- Added NirCmd Dependency
+- Added Vivaldi to the Browser Cleaner
+- Change how the browsers are closed in the Browser Cleaner
+
 SHCleaner v2.0.9:
 - Fixed Edge not closing on cleaning
 - Fixed a typo in the Internet Cleaner Browsers titles

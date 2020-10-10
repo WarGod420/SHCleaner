@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v2.0.9 By SarahH12099
+title SHCleaner v3.0.0 By SarahH12099
 
 MODE 107,25
 
@@ -12,7 +12,6 @@ if %errorLevel% == 2 (
     goto exit
 )
 
-if not exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
 echo -----------------------------------------------------------------------------------------------------------
 echo SHCleaner Dependency Checker
 echo -----------------------------------------------------------------------------------------------------------
@@ -28,6 +27,40 @@ if not exist "%programdata%\SarahH12099\SHCleaner" (
 ) else (
     echo.
     echo SHCleaner ProgramData Exists
+    echo.
+)
+echo Checking for SHCleaner NirCmd
+if not exist "%programdata%\SarahH12099\SHCleaner\nircmd.zip" (
+    echo.
+    echo SHCleaner NirCmd Not Found
+    echo.
+    ping sarahh12099.github.io -n 1 -w 1000 | find "Reply" > nul
+    if not errorlevel 1 (
+        echo Connected to the Internet
+        echo.
+        echo Downloading And Installing NirCmd
+        echo.
+        cd "%programdata%\SarahH12099\SHCleaner"
+        if exist "nircmd.exe" (
+            del /f /q "nircmd.exe">nul 2>&1
+        )>nul 2>&1
+        if exist "nircmdc.exe" (
+            del /f /q "nircmdc.exe">nul 2>&1
+        )>nul 2>&1
+        powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://sarahh12099.github.io/files/nircmd.zip -OutFile nircmd.zip"
+        powershell -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('nircmd.zip', '%programdata%\SarahH12099\SHCleaner'); }"
+        cd \
+        echo Done Downloading And Installing NirCmd
+        echo.
+    ) else (
+        echo Not Connected to the Internet, Please Connect to the Internet and Try Again
+        echo.
+        pause
+        goto exit
+    )
+) else (
+    echo.
+    echo SHCleaner NirCmd Exists
     echo.
 )
 echo Checking for SHCleaner SQLite3
@@ -53,30 +86,35 @@ if not exist "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" (
         cd \
         echo Done Downloading And Installing Dependencies
         echo.
-        pause
-        goto menu
     ) else (
         echo Not Connected to the Internet, Please Connect to the Internet and Try Again
         echo.
         pause
         goto exit
     )
+) else (
+    echo.
+    echo SHCleaner SQLite3 Exists
+    echo.
 )
-)
+echo Done SHCleaner Dependency Checker
+echo.
+pause
+goto menu
 
 :menu
 cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v2.0.9
+echo SHCleaner v3.0.0
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Select A Tool
 echo =============
 echo.
-echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox)
+echo [1] Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Vivaldi)
 echo [2] Application Cleanup
 echo [3] Windows Cleanup
 echo [4] Windows Update Cleanup
@@ -97,14 +135,14 @@ goto error
 :1
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox)
+echo Delete Internet History/Cache/Cookies (Brave, Chrome, Edge Chromium, Firefox, Vivaldi)
 echo -----------------------------------------------------------------------------------------------------------
 echo.
 echo Cleaning Internet History/Cache/Cookies
 
 :: Brave
 if exist "%localappdata%\BraveSoftware\Brave-Browser\User Data" (
-taskkill /F /IM "brave.exe">nul 2>&1
+"%programdata%\SarahH12099\SHCleaner\nircmdc.exe" closeprocess "brave.exe">nul 2>&1
 cd "%localappdata%\BraveSoftware\Brave-Browser\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
@@ -281,7 +319,7 @@ cd \
 
 :: Chrome
 if exist "%localappdata%\Google\Chrome\User Data" (
-taskkill /F /IM "chrome.exe">nul 2>&1
+"%programdata%\SarahH12099\SHCleaner\nircmdc.exe" closeprocess "chrome.exe">nul 2>&1
 cd "%localappdata%\Google\Chrome\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
@@ -458,7 +496,7 @@ cd \
 
 :: Edge Chromium
 if exist "%localappdata%\Microsoft\Edge\User Data" (
-taskkill /F /IM "msedge.exe">nul 2>&1
+"%programdata%\SarahH12099\SHCleaner\nircmdc.exe" closeprocess "msedge.exe">nul 2>&1
 cd "%localappdata%\Microsoft\Edge\User Data"
 del /q /f "BrowserMetrics*.pma">nul 2>&1
 del /q /f "CrashpadMetrics*.pma">nul 2>&1
@@ -646,6 +684,183 @@ del /q /f "formhistory.sqlite">nul 2>&1
 )>nul 2>&1
 if exist "places.sqlite" (
 "%programdata%\SarahH12099\SHCleaner\sqlite3.exe" places.sqlite "DELETE FROM moz_historyvisits;">nul 2>&1
+)>nul 2>&1
+cd \
+)>nul 2>&1
+)>nul 2>&1
+
+:: Vivaldi
+if exist "%localappdata%\Vivaldi\User Data" (
+"%programdata%\SarahH12099\SHCleaner\nircmdc.exe" closeprocess "vivaldi.exe">nul 2>&1
+cd "%localappdata%\Vivaldi\User Data"
+del /q /f "BrowserMetrics*.pma">nul 2>&1
+del /q /f "CrashpadMetrics*.pma">nul 2>&1
+if exist "BrowserMetrics" (
+cd "BrowserMetrics"
+del /q /f "*.pma">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Crashpad" (
+cd "Crashpad"
+del /q /f "metadata">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "ShaderCache\GPUCache" (
+cd "ShaderCache\GPUCache"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../../
+)>nul 2>&1
+cd \
+for /d %%i in ("%localappdata%\Vivaldi\User Data\*") do (
+cd "%%i"
+if exist "History*.*" (
+del /q /f "*.ldb">nul 2>&1
+del /q /f "*.log">nul 2>&1
+del /q /f "Bookmarks.bak">nul 2>&1
+del /q /f "Cookies*.*">nul 2>&1
+del /q /f "CURRENT*.*">nul 2>&1
+del /q /f "Current Session*.*">nul 2>&1
+del /q /f "Current Tabs*.*">nul 2>&1
+del /q /f "DownloadMetadata*.*">nul 2>&1
+del /q /f "Extension Cookies*.*">nul 2>&1
+del /q /f "History*.*">nul 2>&1
+del /q /f "Last Session*.*">nul 2>&1
+del /q /f "Last Tabs*.*">nul 2>&1
+del /q /f "LOCK*.*">nul 2>&1
+del /q /f "LOG.*">nul 2>&1
+del /q /f "MANIFEST*.*">nul 2>&1
+del /q /f "Network Action*.*">nul 2>&1
+del /q /f "Network Persistent State*.*">nul 2>&1
+del /q /f "QuotaManager*.*">nul 2>&1
+del /q /f "Shortcuts*.*">nul 2>&1
+del /q /f "Top Sites*.*">nul 2>&1
+del /q /f "Visited Links*.*">nul 2>&1
+del /q /f "Web Data*.*">nul 2>&1
+if exist "AutofillStrikeDatabase" (
+cd "AutofillStrikeDatabase"
+del /q /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Cache" (
+cd "Cache"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Code Cache" (
+cd "Code Cache"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "data_reduction_proxy_leveldb" (
+cd "data_reduction_proxy_leveldb"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Extension Rules" (
+cd "Extension Rules"
+del /q /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Extension State" (
+cd "Extension State"
+del /q /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Feature Engagement Tracker" (
+cd "Feature Engagement Tracker"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "File System" (
+cd "File System"
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "GCM Store" (
+cd "GCM Store"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "IndexedDB" (
+cd "IndexedDB"
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "JumpListIconsMostVisited" (
+cd "JumpListIconsMostVisited"
+del /q /s /f "*.tmp">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "JumpListIconsRecentClosed" (
+cd "JumpListIconsRecentClosed"
+del /q /s /f "*.tmp">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Local Extension Settings" (
+cd "Local Extension Settings"
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Local Storage\leveldb" (
+cd "Local Storage\leveldb"
+del /q /f "LOG*.*">nul 2>&1
+cd ../../
+)>nul 2>&1
+if exist "Managed Extension Settings" (
+cd "Managed Extension Settings"
+del /q /s /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Platform Notifications" (
+cd "Platform Notifications"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Service Worker\Database" (
+cd "Service Worker\Database"
+del /q /f "LOG*.*">nul 2>&1
+cd ../../
+)>nul 2>&1
+if exist "Session Storage" (
+cd "Session Storage"
+del /q /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "shared_proto_db" (
+cd "shared_proto_db"
+del /q /f "LOG*.*">nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "shared_proto_db\metadata" (
+cd "shared_proto_db\metadata"
+del /q /f "LOG*.*">nul 2>&1
+cd ../../
+)>nul 2>&1
+if exist "Site Characteristics Database" (
+cd "Site Characteristics Database"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "Sync Data" (
+cd "Sync Data"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
+if exist "VideoDecodeStats" (
+cd "VideoDecodeStats"
+del /q /s /f "*.*">nul 2>&1
+FOR /D %%p IN ("*.*") DO rmdir "%%p" /s /q>nul 2>&1
+cd ../
+)>nul 2>&1
 )>nul 2>&1
 cd \
 )>nul 2>&1
@@ -1068,7 +1283,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=2.0.9
+set Version=3.0.0
 cd %temp%
 
 if exist "sqlite3md5.txt" (
