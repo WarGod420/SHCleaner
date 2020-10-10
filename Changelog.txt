@@ -1,3 +1,7 @@
+SHCleaner v3.0.1:
+- Added VEGAS Pro 18.0 to the Application Cleaner
+- Improved Auslogic Disk Defrag Ultimate cleaning in the Application Cleaner
+
 SHCleaner v3.0.0:
 - Added NirCmd Dependency
 - Added Vivaldi to the Browser Cleaner

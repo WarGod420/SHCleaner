@@ -1,5 +1,5 @@
 @echo off
-title SHCleaner v3.0.0 By SarahH12099
+title SHCleaner v3.0.1 By SarahH12099
 
 MODE 107,25
 
@@ -107,7 +107,7 @@ cd \
 set op=
 cls
 echo -----------------------------------------------------------------------------------------------------------
-echo SHCleaner v3.0.0
+echo SHCleaner v3.0.1
 echo Made By SarahH12099
 echo -----------------------------------------------------------------------------------------------------------
 echo.
@@ -926,6 +926,9 @@ del /q /f "%programdata%\Auslogics\BoostSpeed\11.x\Reports\*.html">nul 2>&1
 )>nul 2>&1
 
 :: Auslogics Disk Defrag Ultimate
+if exist "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Logs" (
+del /q /f "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Logs\*.log">nul 2>&1
+)>nul 2>&1
 if exist "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports" (
 taskkill /F /IM "DiskDefragPro.exe">nul 2>&1
 del /q /f "%programdata%\Auslogics\Disk Defrag Ultimate\4.x\Reports\*.xml">nul 2>&1
@@ -1139,6 +1142,13 @@ del /q /s /f "%localappdata%\VEGAS Pro\17.0\*.log">nul 2>&1
 FOR /D %%p IN ("%localappdata%\VEGAS Pro\17.0\*.log") DO rmdir "%%p" /s /q>nul 2>&1
 )>nul 2>&1
 
+:: VEGAS Pro 18.0
+if exist "%localappdata%\VEGAS Pro\18.0" (
+taskkill /F /IM "vegas180.exe">nul 2>&1
+del /q /s /f "%localappdata%\VEGAS Pro\18.0\*.log">nul 2>&1
+FOR /D %%p IN ("%localappdata%\VEGAS Pro\18.0\*.log") DO rmdir "%%p" /s /q>nul 2>&1
+)>nul 2>&1
+
 :: Visual Studio Code
 if exist "%appdata%\Code" (
 taskkill /F /IM "Code.exe">nul 2>&1
@@ -1283,7 +1293,7 @@ For /f "skip=1 Delims=" %%# in (
 ) Do If not defined MD5 Set MD5=%%#
 Set MD5=%MD5: =%
 
-set Version=3.0.0
+set Version=3.0.1
 cd %temp%
 
 if exist "sqlite3md5.txt" (
