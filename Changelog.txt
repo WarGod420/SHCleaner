@@ -1,3 +1,6 @@
+SHCleaner v3.0.2:
+- Added AirParrot 3 to the Application Cleaner
+
 SHCleaner v3.0.1:
 - Added VEGAS Pro 18.0 to the Application Cleaner
 - Improved Auslogic Disk Defrag Ultimate cleaning in the Application Cleaner
